@@ -1,5 +1,11 @@
 export class VendingMachine {
+    private itemLists;
+
+    constructor() {
+        this.itemLists = [];
+    }
+
     getItems() {
-        return [];
+        return this.itemLists;
     }
 }
