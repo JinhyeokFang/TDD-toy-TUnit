@@ -1,8 +1,11 @@
 export class VendingMachine {
     private itemLists;
 
-    constructor(itemLists) {
-        this.itemLists = itemLists;
+    constructor(itemNameLists) {
+        this.itemLists = itemNameLists.map(itemName => ({
+            name: itemName,
+            isSoldOut: false,
+        }));
     }
 
     getItems() {
