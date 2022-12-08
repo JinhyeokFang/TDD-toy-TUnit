@@ -1,7 +1,22 @@
 import { VendingMachine } from "./vending-machine";
 
+describe('test Item', () => {
+    it('Item.equal', () => {
+        const item = new Item({
+            name: '과자',
+            price: 3000,
+        });
+        const anotherItem = new Item({
+            name: '탕수육',
+            price: 4000,
+        })
+        expect(item.equal(item)).toBe(true);
+        expect(item.equal(anotherItem)).toBe(false);
+    });
+})
+
 describe('test VendingMachine', () => {
-    it('a vending machine displays list of items', () => {
+    it('VendingMachine.getItems', () => {
         let vendingMachine = new VendingMachine([]);
         let items = vendingMachine.getItems();
         expect(items).toEqual([]);
