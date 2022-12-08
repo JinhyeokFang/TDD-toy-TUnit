@@ -1,3 +1,4 @@
+import { Item } from "./item";
 import { VendingMachine } from "./vending-machine";
 
 describe('test Item', () => {
