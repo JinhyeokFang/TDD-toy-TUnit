@@ -8,16 +8,20 @@ describe('test VendingMachine', () => {
 
         const LIST_OF_ITEMS = [{
             name: '피자',
+            price: 1000,
             amount: 10,
         }, {
             name: '콜라',
+            price: 2000,
             amount: 0,
         }];
         const DISPLAYED_ITEMS = [{
             name: '피자',
+            price: 1000,
             isSoldOut: false,
         }, {
             name: '콜라',
+            price: 2000,
             isSoldOut: true,
         }];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);
