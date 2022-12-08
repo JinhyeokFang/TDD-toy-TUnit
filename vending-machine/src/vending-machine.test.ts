@@ -6,9 +6,16 @@ describe('test VendingMachine', () => {
         let items = vendingMachine.getItems();
         expect(items).toEqual([]);
 
-        const LIST_OF_ITEMS = ['피자', '콜라', '오레오', '물티슈'];
+        const LIST_OF_ITEMS = ['피자', '콜라'];
+        const DISPLAYED_ITEMS = [{
+            name: '피자',
+            isSoldOut: false,
+        }, {
+            name: '콜라',
+            isSoldOut: false,
+        }];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);
         items = vendingMachine.getItems();
-        expect(items).toEqual(LIST_OF_ITEMS);
+        expect(items).toEqual(DISPLAYED_ITEMS);
     });
 });
