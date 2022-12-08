@@ -6,13 +6,19 @@ describe('test VendingMachine', () => {
         let items = vendingMachine.getItems();
         expect(items).toEqual([]);
 
-        const LIST_OF_ITEMS = ['피자', '콜라'];
+        const LIST_OF_ITEMS = [{
+            name: '피자',
+            amount: 10,
+        }, {
+            name: '콜라',
+            amount: 0,
+        }];
         const DISPLAYED_ITEMS = [{
             name: '피자',
             isSoldOut: false,
         }, {
             name: '콜라',
-            isSoldOut: false,
+            isSoldOut: true,
         }];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);
         items = vendingMachine.getItems();
