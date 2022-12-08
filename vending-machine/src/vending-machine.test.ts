@@ -26,26 +26,22 @@ describe('test VendingMachine', () => {
             item: new Item({
                 name: '피자',
                 price: 1000,
+                amount: 10,
             }),
-            amount: 10,
         }, {
             item: new Item({
                 name: '콜라',
                 price: 2000,
+                amount: 0,
             }),
-            amount: 0,
         }];
         const DISPLAYED_ITEMS = [{
-            item: new Item({
-                name: '피자',
-                price: 1000,
-            }),
+            name: '피자',
+            price: 1000,
             isSoldOut: false,
         }, {
-            item: new Item({
-                name: '콜라',
-                price: 2000,
-            }),
+            name: '콜라',
+            price: 2000,
             isSoldOut: true,
         }];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);

@@ -7,7 +7,8 @@
 - 넣은 금액이 충분하면 선택한 품목 내뱉는다.
 - *품목 수량 관리*
 - *각 품목의 price*
-- **item ValueObject**
+- *item ValueObject*
+- **item이 amount를 관리**
 
 
 - **진행중인 항목 표시**
