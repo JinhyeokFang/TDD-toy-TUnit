@@ -6,10 +6,12 @@ describe('test Item', () => {
         const item = new Item({
             name: '과자',
             price: 3000,
+            amount: 10
         });
         const anotherItem = new Item({
             name: '탕수육',
             price: 4000,
+            amount: 10,
         })
         expect(item.equal(item)).toBe(true);
         expect(item.equal(anotherItem)).toBe(false);
@@ -22,19 +24,18 @@ describe('test VendingMachine', () => {
         let items = vendingMachine.getItems();
         expect(items).toEqual([]);
 
-        const LIST_OF_ITEMS = [{
-            item: new Item({
+        const LIST_OF_ITEMS = [
+            new Item({
                 name: '피자',
                 price: 1000,
                 amount: 10,
-            }),
-        }, {
-            item: new Item({
+            }), 
+            new Item({
                 name: '콜라',
                 price: 2000,
                 amount: 0,
             }),
-        }];
+        ];
         const DISPLAYED_ITEMS = [{
             name: '피자',
             price: 1000,

@@ -1,5 +1,7 @@
+import { Item } from "./item";
+
 export class VendingMachine {
-    private itemLists;
+    private itemLists: Item[];
 
     constructor(itemLists) {
         this.itemLists = itemLists;
@@ -7,7 +9,8 @@ export class VendingMachine {
 
     getItems() {
         return this.itemLists.map(item => ({
-            item: item.item,
+            name: item.name,
+            price: item.price,
             isSoldOut: item.amount === 0,
         }));
     }

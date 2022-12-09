@@ -1,10 +1,12 @@
 export class Item {
-    private name: string;
-    private price: number;
+    public readonly name: string;
+    public readonly price: number;
+    public readonly amount: number;
 
-    constructor({ name, price }) {
+    constructor({ name, price, amount }) {
         this.name = name;
         this.price = price;
+        this.amount = amount;
     }
 
     public equal(anotherItem: Item) {
