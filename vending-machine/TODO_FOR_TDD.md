@@ -8,7 +8,8 @@
 - *품목 수량 관리*
 - *각 품목의 price*
 - *item ValueObject*
-- **item이 amount를 관리**
+- *item이 amount를 관리*
+- **isSoldOut을 item으로**
 
 
 - **진행중인 항목 표시**
