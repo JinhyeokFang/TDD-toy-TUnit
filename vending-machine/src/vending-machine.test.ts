@@ -55,4 +55,12 @@ describe('test VendingMachine', () => {
         items = vendingMachine.getItems();
         expect(items).toEqual(LIST_OF_ITEMS);
     });
+
+    it('VendingMachine.insertedMoney', () => {
+        const INSERTED_MONEY = 3000;
+        const ITEM_LISTS = [];
+        const vendingMachine = new VendingMachine(ITEM_LISTS);
+        vendingMachine.insert(INSERTED_MONEY);
+        expect(vendingMachine.insertedMoney).toBe(INSERTED_MONEY);
+    });
 });

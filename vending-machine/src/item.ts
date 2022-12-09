@@ -17,6 +17,6 @@ export class Item {
     }
 
     get isSoldOut() {
-        return this.amount !== 0;
+        return this.amount === 0;
     }
 }
