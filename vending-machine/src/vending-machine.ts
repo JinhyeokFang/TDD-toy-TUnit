@@ -8,10 +8,6 @@ export class VendingMachine {
     }
 
     getItems() {
-        return this.itemLists.map(item => ({
-            name: item.name,
-            price: item.price,
-            isSoldOut: item.amount === 0,
-        }));
+        return this.itemLists;
     }
 }

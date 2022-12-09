@@ -51,17 +51,8 @@ describe('test VendingMachine', () => {
                 amount: 0,
             }),
         ];
-        const DISPLAYED_ITEMS = [{
-            name: '피자',
-            price: 1000,
-            isSoldOut: false,
-        }, {
-            name: '콜라',
-            price: 2000,
-            isSoldOut: true,
-        }];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);
         items = vendingMachine.getItems();
-        expect(items).toEqual(DISPLAYED_ITEMS);
+        expect(items).toEqual(LIST_OF_ITEMS);
     });
 });
