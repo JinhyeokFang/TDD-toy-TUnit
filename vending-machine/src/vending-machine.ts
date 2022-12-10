@@ -8,12 +8,16 @@ export class VendingMachine {
         this.itemLists = itemLists;
     }
 
-    getItems() {
+    displayItems() {
         return this.itemLists;
     }
 
     insert(money) {
         this.amountOfMoney += money;
+    }
+
+    popItem(item) {
+        return item;
     }
 
     get insertedMoney() {

@@ -1,42 +1,10 @@
 import { Item } from "./item";
 import { VendingMachine } from "./vending-machine";
 
-describe('test Item', () => {
-    it('Item.equal', () => {
-        const item = new Item({
-            name: '과자',
-            price: 3000,
-            amount: 10
-        });
-        const anotherItem = new Item({
-            name: '탕수육',
-            price: 4000,
-            amount: 10,
-        })
-        expect(item.equal(item)).toBe(true);
-        expect(item.equal(anotherItem)).toBe(false);
-    });
-
-    it('Item.isSoldOut', () => {
-        const itemSoldOut = new Item({
-            name: '치즈',
-            price: 1000,
-            amount: 0,
-        });
-        const itemNotSoldOut = new Item({
-            name: '치즈',
-            price: 1000,
-            amount: 2,
-        });
-        expect(itemSoldOut.isSoldOut).toBe(true);
-        expect(itemNotSoldOut.isSoldOut).toBe(false);
-    })
-})
-
 describe('test VendingMachine', () => {
-    it('VendingMachine.getItems', () => {
+    it('VendingMachine.displayItems', () => {
         let vendingMachine = new VendingMachine([]);
-        let items = vendingMachine.getItems();
+        let items = vendingMachine.displayItems();
         expect(items).toEqual([]);
 
         const LIST_OF_ITEMS = [
@@ -52,7 +20,7 @@ describe('test VendingMachine', () => {
             }),
         ];
         vendingMachine = new VendingMachine(LIST_OF_ITEMS);
-        items = vendingMachine.getItems();
+        items = vendingMachine.displayItems();
         expect(items).toEqual(LIST_OF_ITEMS);
     });
 
@@ -62,5 +30,34 @@ describe('test VendingMachine', () => {
         const vendingMachine = new VendingMachine(ITEM_LISTS);
         vendingMachine.insert(INSERTED_MONEY);
         expect(vendingMachine.insertedMoney).toBe(INSERTED_MONEY);
+    });
+
+    describe('VendingMachine.popItem', () => {
+        const INSERTED_MONEY = 5000;
+        const ITEM_LISTS = [new Item({
+            name: '자장면',
+            price: 2000,
+            amount: 2,
+        })];
+        let vendingMachine: VendingMachine;
+
+        beforeEach(() => {
+            vendingMachine = new VendingMachine(ITEM_LISTS);
+            vendingMachine.insert(INSERTED_MONEY);
+        });
+
+        it('pop an item', () => {
+            const ITEM = new Item({ 
+                name: '자장면',
+                price: 2000,
+                amount: 1,
+            });
+            expect(
+                vendingMachine
+                    .popItem(ITEM)
+                    .equal(ITEM)
+            )
+            .toBe(true);
+        });
     });
 });
