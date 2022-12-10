@@ -16,8 +16,16 @@ export class VendingMachine {
         this.amountOfMoney += money;
     }
 
-    popItem(item) {
+    popItem(item, amount) {
+        this.checkIsMoneyEnough(item, amount);
         return item;
+    }
+
+    private checkIsMoneyEnough(item, amount) {
+        const totalPrice = item.price * amount;
+        const isMoneyEnough = this.amountOfMoney >= totalPrice;
+        if (!isMoneyEnough)
+            throw new Error('inserted money is not enough');
     }
 
     get insertedMoney() {

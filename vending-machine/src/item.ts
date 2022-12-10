@@ -16,6 +16,10 @@ export class Item {
         );
     }
 
+    public isAmountEnough(amount: number) {
+        return this.amount <= amount;
+    }
+
     get isSoldOut() {
         return this.amount === 0;
     }

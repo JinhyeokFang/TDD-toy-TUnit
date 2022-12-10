@@ -30,4 +30,14 @@ describe('test Item', () => {
         expect(itemSoldOut.isSoldOut).toBe(true);
         expect(itemNotSoldOut.isSoldOut).toBe(false);
     });
+
+    it('Item.isAmountEnough', () => {
+        const item = new Item({
+            name: '치즈',
+            price: 1000,
+            amount: 2,
+        })
+        expect(item.isAmountEnough(2)).toBe(true);
+        expect(item.isAmountEnough(3)).toBe(true);
+    })
 });

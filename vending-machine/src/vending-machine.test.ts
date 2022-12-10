@@ -33,12 +33,19 @@ describe('test VendingMachine', () => {
     });
 
     describe('VendingMachine.popItem', () => {
-        const INSERTED_MONEY = 5000;
-        const ITEM_LISTS = [new Item({
-            name: '자장면',
-            price: 2000,
-            amount: 2,
-        })];
+        const INSERTED_MONEY = 3000;
+        const ITEM_LISTS = [
+            new Item({
+                name: '자장면',
+                price: 2000,
+                amount: 2,
+            }),
+            new Item({
+                name: '짬뽕',
+                price: 5000,
+                amount: 1,
+            })
+        ];
         let vendingMachine: VendingMachine;
 
         beforeEach(() => {
@@ -54,10 +61,23 @@ describe('test VendingMachine', () => {
             });
             expect(
                 vendingMachine
-                    .popItem(ITEM)
+                    .popItem(ITEM, 1)
                     .equal(ITEM)
             )
             .toBe(true);
         });
+
+        it('throw error when inserted money is not enough', () => {
+            const ITEM = new Item({
+                name: '짬뽕',
+                price: 5000,
+                amount: 1,
+            });
+            expect(() => {
+                vendingMachine
+                    .popItem(ITEM, 1)
+            })
+            .toThrowError();
+        })
     });
 });
