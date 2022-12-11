@@ -1,0 +1,11 @@
+{
+  "name": "tunit",
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "scripts": {
+    "test": "tsc && node dist/tunit.test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
