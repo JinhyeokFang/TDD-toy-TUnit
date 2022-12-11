@@ -17,32 +17,21 @@ export class VendingMachine {
     }
 
     popItem(item, amount) {
-        this.validatePopRequest(item, amount);
+        this.validatePopItemRequest(item, amount);
         return item;
     }
 
-    private validatePopRequest(item, amount) {
+    private validatePopItemRequest(item, amount) {
         const itemFromVendingMachine = this.checkIsItemExistsAndGetItem(item);
-        this.checkIsMoneyEnough(itemFromVendingMachine, amount);
         this.checkIsAmountEnough(itemFromVendingMachine, amount);
+        this.checkIsMoneyEnough(itemFromVendingMachine, amount);
     }
 
     private checkIsItemExistsAndGetItem(item) {
-        return this.findItemFromVendingMachine(item) as Item;
-    }
-
-    private checkIsMoneyEnough(item, amount) {
-        const totalPrice = item.price * amount;
-        const isMoneyEnough = this.amountOfMoney >= totalPrice;
-        if (!isMoneyEnough)
-            throw new Error('inserted money is not enough');
-    }
-
-    private checkIsAmountEnough(item, amount) {
-        const isAmountEnough = item.isAmountEnough(amount);
-        console.log(item, amount)
-        if (!isAmountEnough)
-            throw new Error('inserted amount is not enough');
+        const itemFromVendingMachine = this.findItemFromVendingMachine(item);
+        if (!itemFromVendingMachine)
+            throw new Error('requested item is not found from vending machine');
+        return itemFromVendingMachine;
     }
 
     private findItemFromVendingMachine(item) {
@@ -50,6 +39,24 @@ export class VendingMachine {
             i => i.equal(item)
         );
         return itemFromLists;
+    }
+
+    private checkIsMoneyEnough(item, amount) {
+        const isMoneyEnough = this.getIsMoneyEnough(item, amount);
+        if (!isMoneyEnough)
+            throw new Error('inserted money is not enough');
+    }
+
+    private getIsMoneyEnough(item, amount) {
+        const totalPrice = item.price * amount;
+        const isMoneyEnough = this.amountOfMoney >= totalPrice;
+        return isMoneyEnough;
+    }
+
+    private checkIsAmountEnough(item, amount) {
+        const isAmountEnough = item.isAmountEnough(amount);
+        if (!isAmountEnough)
+            throw new Error('amount of items is not enough');
     }
 
     get insertedMoney() {
