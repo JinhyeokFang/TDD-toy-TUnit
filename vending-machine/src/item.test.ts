@@ -39,5 +39,16 @@ describe('test Item', () => {
         })
         expect(item.isAmountEnough(2)).toBe(true);
         expect(item.isAmountEnough(3)).toBe(false);
-    })
+    });
+
+    it('Item.popItem', () => {
+        const item = new Item({
+            name: '치즈',
+            price: 1000,
+            amount: 1,
+        })
+        expect(item.isAmountEnough(1)).toBe(true);
+        item.popItem();
+        expect(item.isAmountEnough(1)).toBe(false);
+    });
 });

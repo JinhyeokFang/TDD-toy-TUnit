@@ -1,7 +1,7 @@
 export class Item {
     public readonly name: string;
     public readonly price: number;
-    private readonly amount: number;
+    private amount: number;
 
     constructor({ name, price, amount = 0 }) {
         this.name = name;
@@ -22,5 +22,10 @@ export class Item {
 
     get isSoldOut() {
         return this.amount === 0;
+    }
+
+    public popItem() {
+        if (!this.isSoldOut)
+            this.amount -= 1;
     }
 }
