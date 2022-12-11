@@ -24,8 +24,9 @@ export class Item {
         return this.amount === 0;
     }
 
-    public popItem() {
-        if (!this.isSoldOut)
-            this.amount -= 1;
+    public popItem(amount) {
+        this.amount -= amount;
+        if (this.amount < 0)
+            this.amount = 0;
     }
 }

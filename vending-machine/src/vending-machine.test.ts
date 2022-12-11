@@ -37,8 +37,8 @@ describe('test VendingMachine', () => {
         const ITEM_LISTS = [
             new Item({
                 name: '자장면',
-                price: 2000,
-                amount: 1,
+                price: 1000,
+                amount: 2,
             }),
             new Item({
                 name: '짬뽕',
@@ -86,11 +86,18 @@ describe('test VendingMachine', () => {
         it('throw error when amount of items is not enough', () => {
             const ITEM = new Item({
                 name: '자장면',
-                price: 2000,
+                price: 1000,
             });
             expect(() => {
                 vendingMachine
+                    .popItem(ITEM, 3)
+            })
+            .toThrowError();
+            expect(() => {
+                vendingMachine
                     .popItem(ITEM, 2)
+                vendingMachine
+                    .popItem(ITEM, 1)
             })
             .toThrowError();
         });

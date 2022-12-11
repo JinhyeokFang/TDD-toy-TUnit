@@ -48,7 +48,7 @@ describe('test Item', () => {
             amount: 1,
         })
         expect(item.isAmountEnough(1)).toBe(true);
-        item.popItem();
+        item.popItem(1);
         expect(item.isAmountEnough(1)).toBe(false);
     });
 });

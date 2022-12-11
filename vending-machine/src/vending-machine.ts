@@ -25,6 +25,7 @@ export class VendingMachine {
         const itemFromVendingMachine = this.checkIsItemExistsAndGetItem(item);
         this.checkIsAmountEnough(itemFromVendingMachine, amount);
         this.checkIsMoneyEnough(itemFromVendingMachine, amount);
+        itemFromVendingMachine.popItem(amount);
     }
 
     private checkIsItemExistsAndGetItem(item) {
