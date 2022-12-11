@@ -1,5 +1,8 @@
-import TestCaseTestCase from './testcase.test'
+import TestCase from '../lib/testcase'
 
-console.log(TestCaseTestCase.log)
-TestCaseTestCase.test()
-console.log(TestCaseTestCase.log)
+new TestCase(() => {
+    const testCase = new TestCase(() => {});
+    console.log(testCase.log)
+    testCase.test()
+    console.log(testCase.log)
+}).test();
