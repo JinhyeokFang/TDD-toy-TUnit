@@ -38,6 +38,6 @@ describe('test Item', () => {
             amount: 2,
         })
         expect(item.isAmountEnough(2)).toBe(true);
-        expect(item.isAmountEnough(3)).toBe(true);
+        expect(item.isAmountEnough(3)).toBe(false);
     })
 });

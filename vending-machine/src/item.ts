@@ -3,7 +3,7 @@ export class Item {
     public readonly price: number;
     private readonly amount: number;
 
-    constructor({ name, price, amount }) {
+    constructor({ name, price, amount = 0 }) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -17,7 +17,7 @@ export class Item {
     }
 
     public isAmountEnough(amount: number) {
-        return this.amount <= amount;
+        return this.amount >= amount;
     }
 
     get isSoldOut() {

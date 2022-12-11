@@ -33,18 +33,23 @@ describe('test VendingMachine', () => {
     });
 
     describe('VendingMachine.popItem', () => {
-        const INSERTED_MONEY = 3000;
+        const INSERTED_MONEY = 4000;
         const ITEM_LISTS = [
             new Item({
                 name: '자장면',
                 price: 2000,
-                amount: 2,
+                amount: 1,
             }),
             new Item({
                 name: '짬뽕',
                 price: 5000,
                 amount: 1,
-            })
+            }),
+            new Item({
+                name: '탕수육',
+                price: 100,
+                amount: 10,
+            }),
         ];
         let vendingMachine: VendingMachine;
 
@@ -53,15 +58,14 @@ describe('test VendingMachine', () => {
             vendingMachine.insert(INSERTED_MONEY);
         });
 
-        it('pop an item', () => {
+        it('pop items', () => {
             const ITEM = new Item({ 
-                name: '자장면',
-                price: 2000,
-                amount: 1,
+                name: '탕수육',
+                price: 100,
             });
             expect(
                 vendingMachine
-                    .popItem(ITEM, 1)
+                    .popItem(ITEM, 10)
                     .equal(ITEM)
             )
             .toBe(true);
@@ -71,13 +75,24 @@ describe('test VendingMachine', () => {
             const ITEM = new Item({
                 name: '짬뽕',
                 price: 5000,
-                amount: 1,
             });
             expect(() => {
                 vendingMachine
                     .popItem(ITEM, 1)
             })
             .toThrowError();
-        })
+        });
+
+        it('throw error when amount of items is not enough', () => {
+            const ITEM = new Item({
+                name: '자장면',
+                price: 2000,
+            });
+            expect(() => {
+                vendingMachine
+                    .popItem(ITEM, 2)
+            })
+            .toThrowError();
+        });
     });
 });
