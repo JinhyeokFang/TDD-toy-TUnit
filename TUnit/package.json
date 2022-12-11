@@ -4,7 +4,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "test": "tsc && node dist/tunit.test.js"
+    "test": "tsc && node dist/test/tunit.test.js"
   },
   "author": "",
   "license": "ISC"
