@@ -1,9 +1,9 @@
-import { assertEqualBoolean } from "../lib/assert";
+import { assertEqualBoolean, assertEqualString } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 class TestCaseTest extends TestCase {
     test() {
-        assertEqualBoolean(this.log.join() === 'test', true, 'Wrong Log');
+        assertEqualString(this.log.join(), 'test', 'Wrong Log');
     }
 }
 
