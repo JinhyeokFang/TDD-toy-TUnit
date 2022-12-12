@@ -1,3 +1,4 @@
+import assertEqualBoolean from '../lib/assert';
 import TestCase from '../lib/testcase'
 
 new TestCase(() => {
@@ -7,4 +8,14 @@ new TestCase(() => {
     testCase.test()
     if (testCase.log.join() !== 'test')
         throw new Error('Wrong Log');
+}).test();
+
+new TestCase(() => {
+    assertEqualBoolean('hi' === 'hi', true);
+    try {
+        assertEqualBoolean(3 === 3, false);
+    } catch {
+        return;
+    }
+    throw new Error('assertEqualBoolean() should throw an error');
 }).test();
