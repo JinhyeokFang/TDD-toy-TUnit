@@ -7,7 +7,8 @@
 - 어느 method 실행했는지 기록
 - run
 - 테스트 슈트
-- **assertEqualBoolean()**
+- **테스트 케이스 클래스화**
+- *assertEqualBoolean()*
 - assertEqualObject()
 - assertEqualNumber()
 - assertEqualString()

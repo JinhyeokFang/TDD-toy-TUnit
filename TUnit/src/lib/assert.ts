@@ -1,4 +1,4 @@
-export default function assertEqualBoolean(
+export function assertEqualBoolean(
     value1: boolean, value2: boolean, errorMessage = ''
 ): void {
     if (value1 !== value2)
