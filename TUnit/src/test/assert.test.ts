@@ -2,7 +2,7 @@ import { assertEqualBoolean } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 class AssertTest extends TestCase {
-    testMethod(): void {
+    test(): void {
         assertEqualBoolean('hi' === 'hi', true);
         const ERROR_MESSAGE = '3 === 3 is false.';
         try {

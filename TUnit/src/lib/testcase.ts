@@ -1,9 +1,9 @@
 export default abstract class TestCase {
-    abstract testMethod(): void;
+    abstract test(): void;
     log: string[] = [];
 
-    test() {
+    run() {
         this.log = ['test'];
-        this.testMethod();
+        this.test();
     }
 }
