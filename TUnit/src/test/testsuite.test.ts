@@ -1,10 +1,11 @@
 import { assertEqual } from "../lib/assert";
+import { fail } from "../lib/fail";
 import TestCase from "../lib/testcase";
 import TestSuite from "../lib/testsuite";
 
 class TC1 extends TestCase { test() {} }
 class TC2 extends TestCase { test() {
-    assertEqual(true, false, 'FAILED');
+    fail();
 } }
 class TC3 extends TestCase { test() {} }
 
