@@ -2,6 +2,8 @@ import { assertEqualBoolean, assertEqualString } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 class AssertTest extends TestCase {
+    setUp(): void {};
+    tearDown(): void {};
     test(): void {
         assertEqualString('hi', 'hi');
         const ERROR_MESSAGE = '3 === 3 is false.';

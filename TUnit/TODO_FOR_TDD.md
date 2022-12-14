@@ -1,8 +1,7 @@
 # 할일 목록
 
 - *테스트 케이스 실행하기*
-- setUp
-- tearDown
+- **setUp과 tearDown**
 - 실행한 테스트 결과 출력
 - 어느 method 실행했는지 기록
 - run
@@ -12,7 +11,7 @@
 - *assertEqualBoolean()*
 - assertEqualObject()
 - assertEqualNumber()
-- **assertEqualString()**
+- *assertEqualString()*
 - assertEqualArray()
 - assertThrowError()
 - fail()
