@@ -10,3 +10,9 @@ export function assertEqualString(
 ): void {
     assertEqualBoolean(string1 === string2, true, errorMessage);
 }
+
+export function assertEqualNumber(
+    number1: number, number2: number, errorMessage = ''
+): void {
+    assertEqualBoolean(number1 === number2, true, errorMessage);
+}

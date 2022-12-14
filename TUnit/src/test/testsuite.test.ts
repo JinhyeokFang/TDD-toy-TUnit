@@ -1,4 +1,4 @@
-import { assertEqualBoolean, assertEqualString } from "../lib/assert";
+import { assertEqualBoolean, assertEqualNumber } from "../lib/assert";
 import TestCase from "../lib/testcase";
 import TestSuite from "../lib/testsuite";
 
@@ -15,17 +15,17 @@ export default class TestSuiteTest extends TestCase {
         const testcases = [TC1, TC2, TC3];
         const testSuite = new TestSuite(testcases);
         testSuite.run();
-        assertEqualString(
-            testSuite.getResult().success.toString(),
-            "2"
+        assertEqualNumber(
+            testSuite.getResult().success,
+            2
         );
-        assertEqualString(
-            testSuite.getResult().fail.toString(),
-            "1"
+        assertEqualNumber(
+            testSuite.getResult().fail,
+            1
         );
-        assertEqualString(
-            testSuite.getResult().total.toString(),
-            "3"
+        assertEqualNumber(
+            testSuite.getResult().total,
+            3
         );
     }
 }

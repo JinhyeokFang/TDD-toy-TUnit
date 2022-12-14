@@ -8,7 +8,7 @@
 - *test(), testMethod() 이름 다시 지어주기*
 - *assertEqualBoolean()*
 - assertEqualObject()
-- assertEqualNumber()
+- **assertEqualNumber()**
 - *assertEqualString()*
 - assertEqualArray()
 - assertThrowError()

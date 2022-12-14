@@ -1,4 +1,4 @@
-import { assertEqualBoolean, assertEqualString } from "../lib/assert";
+import { assertEqualBoolean, assertEqualNumber, assertEqualString } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 export default class AssertTest extends TestCase {
@@ -8,7 +8,7 @@ export default class AssertTest extends TestCase {
         assertEqualString('hi', 'hi');
         const ERROR_MESSAGE = '3 === 3 is false.';
         try {
-            assertEqualString('3', '4', ERROR_MESSAGE);
+            assertEqualNumber(3, 4, ERROR_MESSAGE);
         } catch (err) {
             assertEqualBoolean(
                 err.message === ERROR_MESSAGE, 
