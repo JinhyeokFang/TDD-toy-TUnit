@@ -1,4 +1,4 @@
-import { assertEqualString } from "../lib/assert";
+import { assertEqual } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 class TestCaseForTest extends TestCase {
@@ -11,6 +11,6 @@ export default class TestCaseTest extends TestCase {
     test() {
         const tc = new TestCaseForTest();
         tc.run();
-        assertEqualString(tc.log.join('-'), 'setUp-test-tearDown', 'Wrong Log');
+        assertEqual(tc.log.join('-'), 'setUp-test-tearDown', 'Wrong Log');
     }
 }

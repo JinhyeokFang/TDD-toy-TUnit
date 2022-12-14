@@ -1,4 +1,3 @@
-import { isEqual } from "lodash";
 import { assertEqual } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
