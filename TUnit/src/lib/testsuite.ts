@@ -14,12 +14,16 @@ export default class TestSuite {
         this.clearResult();
         for (const testcase of this.testcases) {
             const tcInstance = new testcase();
-            try {
-                const isSuccess = this.runTestCaseAndReturnTestResult(tcInstance);
-                this.countResult(isSuccess);
-            } catch {
-                this.countResult(false);
-            }
+            this.runTestCase(tcInstance);
+        }
+    }
+
+    private runTestCase(testcase: TestCase) {
+        try {
+            const isSuccess = this.runTestCaseAndReturnTestResult(testcase);
+            this.countResult(isSuccess);
+        } catch {
+            this.countResult(false);
         }
     }
 
