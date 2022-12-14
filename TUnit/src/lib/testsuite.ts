@@ -22,7 +22,8 @@ export default class TestSuite {
         try {
             const isSuccess = this.runTestCaseAndReturnTestResult(testcase);
             this.countResult(isSuccess);
-        } catch {
+        } catch (error) {
+            console.error(error)
             this.countResult(false);
         }
     }

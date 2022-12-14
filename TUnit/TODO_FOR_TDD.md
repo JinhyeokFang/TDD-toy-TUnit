@@ -6,11 +6,8 @@
 - 테스트 슈트
 - *테스트 케이스 클래스화*
 - *test(), testMethod() 이름 다시 지어주기*
-- *assertEqualBoolean()*
-- assertEqualObject()
-- **assertEqualNumber()**
-- *assertEqualString()*
-- assertEqualArray()
+- **assertEqual() with lodash**
+- assertEqual 제외 모든 assert문 제거
 - assertThrowError()
 - fail()
 - success()

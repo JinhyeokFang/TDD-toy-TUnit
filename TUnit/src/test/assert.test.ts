@@ -1,16 +1,22 @@
-import { assertEqualBoolean, assertEqualNumber, assertEqualString } from "../lib/assert";
+import { isEqual } from "lodash";
+import { assertEqual } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 export default class AssertTest extends TestCase {
     setUp(): void {};
     tearDown(): void {};
     test(): void {
-        assertEqualString('hi', 'hi');
+        assertEqual('hi', 'hi');
+        assertEqual({
+            hi: 'Hello',
+        }, {
+            hi: 'Hello',
+        });
         const ERROR_MESSAGE = '3 === 3 is false.';
         try {
-            assertEqualNumber(3, 4, ERROR_MESSAGE);
+            assertEqual(3, 4, ERROR_MESSAGE);
         } catch (err) {
-            assertEqualBoolean(
+            assertEqual(
                 err.message === ERROR_MESSAGE, 
                 true,
                 'assertEqualBoolean should have right error message',
