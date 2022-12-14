@@ -2,12 +2,10 @@ import { assertEqualString } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 class TestCaseForTest extends TestCase {
-    setUp() {}
     test() {}
-    tearDown() {}
 }
 
-class TestCaseTest extends TestCase {
+export default class TestCaseTest extends TestCase {
     setUp(): void {};
     tearDown(): void {};
     test() {
@@ -16,5 +14,3 @@ class TestCaseTest extends TestCase {
         assertEqualString(tc.log.join('-'), 'setUp-test-tearDown', 'Wrong Log');
     }
 }
-
-export default new TestCaseTest();

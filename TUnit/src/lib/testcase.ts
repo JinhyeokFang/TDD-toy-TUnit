@@ -1,7 +1,9 @@
-export default abstract class TestCase {
-    abstract setUp(): void;
-    abstract test(): void;
-    abstract tearDown(): void;
+export default class TestCase {
+    setUp() {};
+    test() {
+        throw new Error('testcase must define test()')
+    };
+    tearDown() {};
     log: string[] = [];
 
     run() {

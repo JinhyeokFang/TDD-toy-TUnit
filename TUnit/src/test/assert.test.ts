@@ -1,7 +1,7 @@
 import { assertEqualBoolean, assertEqualString } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
-class AssertTest extends TestCase {
+export default class AssertTest extends TestCase {
     setUp(): void {};
     tearDown(): void {};
     test(): void {
@@ -20,5 +20,3 @@ class AssertTest extends TestCase {
         throw new Error('assertEqualBoolean() should throw an error');
     }
 }
-
-export default new AssertTest();
