@@ -1,4 +1,4 @@
-import { assertEqual } from "../lib/assert";
+import { assertEqual, assertThrowError } from "../lib/assert";
 import TestCase from "../lib/testcase";
 
 export default class AssertTest extends TestCase {
@@ -12,16 +12,8 @@ export default class AssertTest extends TestCase {
             hi: 'Hello',
         });
         const ERROR_MESSAGE = '3 === 3 is false.';
-        try {
+        assertThrowError(() => {
             assertEqual(3, 4, ERROR_MESSAGE);
-        } catch (err) {
-            assertEqual(
-                err.message === ERROR_MESSAGE, 
-                true,
-                'assertEqualBoolean should have right error message',
-            );
-            return;
-        }
-        throw new Error('assertEqualBoolean() should throw an error');
+        }, 'assertEqualBoolean() should throw an error');
     }
 }

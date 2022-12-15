@@ -10,11 +10,11 @@
 - *테스트 케이스 클래스화*
 - *TestCase, TestSuite implements Testable*
 - *Testable을 테스트하는 TestSuite*
-- **TUnit Test 리팩토링**
+- *TUnit Test 리팩토링*
 - *test(), testMethod() 이름 다시 지어주기*
 - *assertEqual() with lodash*
 - *assertEqual 제외 모든 assert문 제거*
-- assertThrowError()
+- **assertThrowError()**
 - *fail()*
 
 - **진행중인 항목 표시**

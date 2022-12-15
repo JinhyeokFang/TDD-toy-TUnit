@@ -7,3 +7,14 @@ export function assertEqual(
     if (!equalivant)
         throw new Error(errorMessage || `Expected ${expected} but Received ${received}`);
 }
+
+export function assertThrowError(
+    testFunction: Function, errorMessage?: string
+): void {
+    try {
+        testFunction();
+    } catch {
+        return;
+    }
+    throw new Error(errorMessage);
+}
