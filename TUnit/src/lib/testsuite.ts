@@ -1,10 +1,5 @@
 import TestCase from "./testcase";
-
-interface TestCaseResult {
-    testcaseName: string;
-    isSuccess: boolean;
-    cause?: string;
-}
+import TestCaseResult from "./testcase-result";
 
 export default class TestSuite {
     private testcases: (typeof TestCase)[] = [];
@@ -21,25 +16,14 @@ export default class TestSuite {
     }
 
     private runTestCase(testcase: (typeof TestCase)) {
-        const testcaseName = testcase.toString().split(' ')[1].slice(0, -2);
-        try {
-            const tcInstance = new testcase();
-            tcInstance.run();
-            this.addTestCaseResult(testcaseName, true);
-        } catch (error) {
-            this.addTestCaseResult(testcaseName, false, error.message);
-        }
+        const tcInstance = new testcase();
+        tcInstance.run();
+        const result = tcInstance.getResult();
+        this.addTestCaseResult(result)
     }
 
-    private addTestCaseResult(
-        testcaseName: string, 
-        isSuccess: boolean, 
-        cause?: string) {
-            this.result.push({
-                testcaseName,
-                isSuccess,
-                cause,
-            });
+    private addTestCaseResult(testcaseResult: TestCaseResult) {
+        this.result.push(testcaseResult);
     }
 
     getResult() {
