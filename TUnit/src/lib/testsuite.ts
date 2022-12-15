@@ -27,14 +27,6 @@ export default class TestSuite {
         this.result.push(testcaseResult);
     }
 
-    getResult() {
-        return {
-            total: this.result.length,
-            success: this.result.filter(r => r.isSuccess).length,
-            fail: this.result.filter(r => !r.isSuccess).length,
-        };
-    }
-
     resultReport() {
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult(...this.result);
