@@ -37,25 +37,4 @@ export default class TestCase {
     getResult() {
         return this.result;
     }
-
-    getTestCaseReport(testcaseResult: TestCaseResult) {
-        if (testcaseResult.isSuccess)
-            return this.getSuccessReport(testcaseResult);
-        return this.getFailReport(testcaseResult);
-    }
-
-    private getSuccessReport(testcaseResult: TestCaseResult) {
-        return `
-${testcaseResult.testcaseName}:
-    Result: Success
-`;
-    }
-
-    private getFailReport(testcaseResult: TestCaseResult) {
-        return `
-${testcaseResult.testcaseName}:
-    Result: Fail
-    Cause: ${testcaseResult.cause}
-`;
-    }
 }
