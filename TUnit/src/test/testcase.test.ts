@@ -33,7 +33,7 @@ export default class TestCaseTest extends TestCase {
             tc2.run();
         } catch {}
         const result = tc2.getResult();
-        assertEqual(result, {
+        assertEqual(result[0], {
             testcaseName: 'TestCaseForFail',
             isSuccess: false,
             cause: 'ERROR'

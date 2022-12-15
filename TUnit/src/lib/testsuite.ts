@@ -1,10 +1,11 @@
 import ReportGenerator from "./report-generator";
-import TestCase from "./testcase";
-import TestCaseResult from "./testcase-result";
+import TestCase from "./testcase"
+import TestResult from './test-result';
+import Testable from "./testable";
 
-export default class TestSuite {
+export default class TestSuite implements Testable {
     private testcases: (typeof TestCase)[] = [];
-    private result: TestCaseResult[] = []; 
+    private result: TestResult[] = []; 
 
     constructor(testcases: (typeof TestCase)[]) {
         this.testcases = testcases;
@@ -20,10 +21,10 @@ export default class TestSuite {
         const tcInstance = new testcase();
         tcInstance.run();
         const result = tcInstance.getResult();
-        this.addTestCaseResult(result)
+        this.addTestCaseResult(result[0]);
     }
 
-    private addTestCaseResult(testcaseResult: TestCaseResult) {
+    private addTestCaseResult(testcaseResult: TestResult) {
         this.result.push(testcaseResult);
     }
 
@@ -31,5 +32,9 @@ export default class TestSuite {
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult(...this.result);
         return reportGenerator.report;
+    }
+
+    getResult(): TestResult[] {
+        return this.result;
     }
 }

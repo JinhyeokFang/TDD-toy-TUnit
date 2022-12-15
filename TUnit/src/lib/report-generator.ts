@@ -1,9 +1,9 @@
-import TestCaseResult from "./testcase-result";
+import TestResult from './test-result';
 
 export default class ReportGenerator {
-    private result: TestCaseResult[] = [];
+    private result: TestResult[] = [];
 
-    addResult(...testcaseResult: TestCaseResult[]) {
+    addResult(...testcaseResult: TestResult[]) {
         this.result = this.result.concat(testcaseResult);
     }
     
@@ -33,20 +33,20 @@ Summary:
         return resultDetail;
     }
 
-    private getTestCaseReport(testcaseResult: TestCaseResult) {
+    private getTestCaseReport(testcaseResult: TestResult) {
         if (testcaseResult.isSuccess)
             return this.getSuccessReport(testcaseResult);
         return this.getFailReport(testcaseResult);
     }
 
-    private getSuccessReport(testcaseResult: TestCaseResult) {
+    private getSuccessReport(testcaseResult: TestResult) {
         return `
 ${testcaseResult.testcaseName}:
     Result: Success
 `;
     }
 
-    private getFailReport(testcaseResult: TestCaseResult) {
+    private getFailReport(testcaseResult: TestResult) {
         return `
 ${testcaseResult.testcaseName}:
     Result: Fail

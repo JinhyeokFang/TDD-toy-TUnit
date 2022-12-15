@@ -1,7 +1,8 @@
-import TestCaseResult from "./testcase-result";
+import TestResult from './test-result';
+import Testable from './testable';
 
-export default class TestCase {
-    private result: TestCaseResult = {
+export default class TestCase implements Testable {
+    private result: TestResult = {
         testcaseName: '',
         isSuccess: false,
     }
@@ -32,6 +33,6 @@ export default class TestCase {
     }
 
     getResult() {
-        return this.result;
+        return [this.result];
     }
 }
