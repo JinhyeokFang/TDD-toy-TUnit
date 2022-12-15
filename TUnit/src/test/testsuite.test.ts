@@ -18,8 +18,6 @@ class TS extends TestSuite {
 }
 
 export default class TestSuiteTest extends TestCase {
-    setUp() {}
-    tearDown() {}
     test() {
         const tests = [TC1, TC2, TS];
         const testSuite = new TestSuite(tests);

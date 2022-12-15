@@ -1,6 +1,7 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
 import TestCase from "../lib/testcase";
+import TestSuite from "../lib/testsuite";
 
 class TestCaseForTest extends TestCase {
     logForTest: string[] = [];
@@ -20,14 +21,25 @@ class TestCaseForFail extends TestCase {
     }
 }
 
-export default class TestCaseTest extends TestCase {
-    setUp(): void {};
-    tearDown(): void {};
+export default class TestCaseTest extends TestSuite {
+    constructor() {
+        super([
+            TestCaseLogTest, 
+            TestCaseResultTest,
+        ])
+    }
+}
+
+class TestCaseLogTest extends TestCase {
     test() {
         const tc = new TestCaseForTest();
         tc.run();
         assertEqual(tc.logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
+    }
+}
 
+class TestCaseResultTest extends TestCase {
+    test() {
         const tc2 = new TestCaseForFail();
         try {
             tc2.run();
