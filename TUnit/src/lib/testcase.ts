@@ -1,13 +1,14 @@
 import TestResult from './test-result';
 import Testable from './testable';
 
-export default class TestCase implements Testable {
+export default class TestCase extends Testable {
     private result: TestResult = {
         testcaseName: '',
         isSuccess: false,
     }
 
     constructor() {
+        super();
         this.result.testcaseName = this.constructor
             .toString()
             .split(' ')[1]

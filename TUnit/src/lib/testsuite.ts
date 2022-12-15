@@ -3,11 +3,12 @@ import TestCase from "./testcase"
 import TestResult from './test-result';
 import Testable from "./testable";
 
-export default class TestSuite implements Testable {
-    private testcases: (typeof TestCase)[] = [];
+export default class TestSuite extends Testable {
+    private testcases: (typeof Testable)[] = [];
     private result: TestResult[] = []; 
 
-    constructor(testcases: (typeof TestCase)[]) {
+    constructor(testcases: (typeof Testable)[]) {
+        super();
         this.testcases = testcases;
     }
 
@@ -17,15 +18,15 @@ export default class TestSuite implements Testable {
         }
     }
 
-    private runTestCase(testcase: (typeof TestCase)) {
-        const tcInstance = new testcase();
-        tcInstance.run();
-        const result = tcInstance.getResult();
-        this.addTestCaseResult(result[0]);
+    private runTestCase(testable: (typeof Testable)) {
+        const testInstance = new testable();
+        testInstance.run();
+        const result = testInstance.getResult();
+        this.addTestCaseResult(result);
     }
 
-    private addTestCaseResult(testcaseResult: TestResult) {
-        this.result.push(testcaseResult);
+    private addTestCaseResult(testcaseResult: TestResult[]) {
+        this.result = this.result.concat(testcaseResult);
     }
 
     resultReport() {
