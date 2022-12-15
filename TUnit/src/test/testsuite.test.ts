@@ -5,7 +5,7 @@ import TestSuite from "../lib/testsuite";
 
 class TC1 extends TestCase { test() {} }
 class TC2 extends TestCase { test() {
-    fail();
+    fail('IT MUST BE FAILED');
 } }
 class TC3 extends TestCase { test() {} }
 
@@ -17,12 +17,24 @@ export default class TestSuiteTest extends TestCase {
         const testSuite = new TestSuite(testcases);
         testSuite.run();
         assertEqual(
-            testSuite.getResult(),
-            {
-                total: 3,
-                success: 2,
-                fail: 1,
-            }
-        );
+            testSuite.resultReport(),
+`
+===============Test_Result===============
+Summary:
+    Total: 3
+    Success: 2
+    Fail: 1
+
+TC1:
+    Result: Success
+
+TC2:
+    Result: Fail
+    Cause: IT MUST BE FAILED
+
+TC3:
+    Result: Success
+`
+        )
     }
 }

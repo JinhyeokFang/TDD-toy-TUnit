@@ -10,7 +10,7 @@ const test = () => {
         testsuiteTest,
     ]);
     testSuite.run();
-    console.log(testSuite.getResult());
+    console.log(testSuite.resultReport());
 }
 
 test();
