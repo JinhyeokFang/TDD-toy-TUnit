@@ -1,9 +1,9 @@
 import { isEqual } from 'lodash'
 
 export function assertEqual(
-    object1: any, object2: any, errorMessage = ''
+    expected: any, received: any, errorMessage?: string
 ): void {
-    const equalivant = isEqual(object1, object2);
+    const equalivant = isEqual(expected, received);
     if (!equalivant)
-        throw new Error(errorMessage);
+        throw new Error(errorMessage || `Expected ${expected} but Received ${received}`);
 }
