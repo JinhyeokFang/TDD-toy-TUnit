@@ -3,7 +3,16 @@ import { fail } from "../lib/fail";
 import TestCase from "../lib/testcase";
 
 class TestCaseForTest extends TestCase {
-    test() {}
+    logForTest: string[] = [];
+    test() {
+        this.logForTest.push('test');
+    }
+    setUp() {
+        this.logForTest.push('setUp');
+    }
+    tearDown() {
+        this.logForTest.push('tearDown');
+    }
 }
 class TestCaseForFail extends TestCase {
     test() {
@@ -17,7 +26,7 @@ export default class TestCaseTest extends TestCase {
     test() {
         const tc = new TestCaseForTest();
         tc.run();
-        assertEqual(tc.log.join('-'), 'setUp-test-tearDown', 'Wrong Log');
+        assertEqual(tc.logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
 
         const tc2 = new TestCaseForFail();
         try {

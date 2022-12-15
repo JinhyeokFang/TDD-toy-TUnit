@@ -5,7 +5,8 @@
 - *실행한 테스트 결과 출력*
 - *runTestCase() 함수 TestCase로 이전, getResult()*
 - *테스트 슈트 report 함수 -> ReportGenerator*
-- **테스트 케이스 report 함수 삭제**
+- *테스트 케이스 report 함수 삭제*
+- **테스트 케이스 log 지우기**
 - *테스트 케이스 클래스화*
 - *test(), testMethod() 이름 다시 지어주기*
 - *assertEqual() with lodash*

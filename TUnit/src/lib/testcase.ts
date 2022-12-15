@@ -6,7 +6,6 @@ export default class TestCase {
         throw new Error('testcase must define test()')
     };
     tearDown() {};
-    log: string[] = [];
     private result: TestCaseResult = {
         testcaseName: '',
         isSuccess: false,
@@ -20,9 +19,7 @@ export default class TestCase {
     }
 
     run() {
-        this.log.push('setUp');
         this.setUp();
-        this.log.push('test');
         try {
             this.test();
             this.result.isSuccess = true;
@@ -30,7 +27,6 @@ export default class TestCase {
             this.result.isSuccess = false;
             this.result.cause = error.message;
         }
-        this.log.push('tearDown');
         this.tearDown();
     }
 
