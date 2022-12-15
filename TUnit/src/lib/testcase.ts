@@ -1,11 +1,6 @@
 import TestCaseResult from "./testcase-result";
 
 export default class TestCase {
-    setUp() {};
-    test() {
-        throw new Error('testcase must define test()')
-    };
-    tearDown() {};
     private result: TestCaseResult = {
         testcaseName: '',
         isSuccess: false,
@@ -17,6 +12,12 @@ export default class TestCase {
             .split(' ')[1]
             .slice(0, -2);
     }
+    
+    protected setUp() {};
+    protected test() {
+        throw new Error('testcase must define test()')
+    };
+    protected tearDown() {};
 
     run() {
         this.setUp();
