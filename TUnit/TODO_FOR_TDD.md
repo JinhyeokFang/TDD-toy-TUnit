@@ -19,7 +19,8 @@
 - *TestSuiteTest에서 ReportGenerator 제거*
 - *TestSuite에서 setUp, tearDown*
 - *fail()*
-- **TUnitTest -> TUnit**
+- *TUnitTest -> TUnit*
+- **TUnit bootstrap static method**
 
 - **진행중인 항목 표시**
 - *완료된 항목 표시*

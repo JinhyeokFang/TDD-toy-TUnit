@@ -12,4 +12,10 @@ export default class TUnit extends TestSuite {
         reportGenerator.addResult(...this.getResult());
         return reportGenerator.report;
     }
+
+    static test(tests: (typeof Testable)[]) {
+        const tunitInstance = new TUnit(tests);
+        tunitInstance.run();
+        console.log(tunitInstance.report);
+    }
 }
