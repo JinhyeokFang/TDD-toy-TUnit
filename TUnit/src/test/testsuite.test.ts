@@ -1,6 +1,5 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
-import ReportGenerator from "../lib/report-generator";
 import TestCase from "../lib/testcase";
 import TestSuite from "../lib/testsuite";
 
@@ -12,13 +11,31 @@ class TC3 extends TestCase { test() {} }
 class TC4 extends TestCase { test() {
     fail('IT MUST BE FAILED');
 } }
-class TS extends TestSuite { 
+class TS extends TestSuite {
+    logForTest: string[] = [];
+
+    setUp() {
+        this.logForTest.push('setUp');          
+    }
     constructor() {
         super([TC3, TC4]);
     }
+    tearDown() {
+        if (this.getResult().length === 2)
+            this.logForTest.push('test');
+        this.logForTest.push('tearDown');
+    }
 }
 
-export default class TestSuiteTest extends TestCase {
+export default class TestSuiteTest extends TestSuite {
+    constructor() {
+        super([
+            TestSuiteTestMethodTest, TestSuiteLogTest
+        ])
+    }
+}
+
+export class TestSuiteTestMethodTest extends TestCase {
     test() {
         const tests = [TC1, TC2, TS];
         const testSuite = new TestSuite(tests);
@@ -54,5 +71,14 @@ export default class TestSuiteTest extends TestCase {
                 cause: 'IT MUST BE FAILED'
             }
         );
+    }
+}
+
+export class TestSuiteLogTest extends TestCase {
+    test() {
+        const testSuite: TestSuite = new TS();
+        testSuite.run();
+        const logForTest = (testSuite as TS).logForTest;
+        assertEqual(logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
     }
 }

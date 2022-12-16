@@ -9,11 +9,16 @@ export default class TestSuite extends Testable {
         super();
         this.testcases = testcases;
     }
+    
+    protected setUp() {};
+    protected tearDown() {};
 
     run() {
+        this.setUp();
         for (const testcase of this.testcases) {
             this.runTestCase(testcase);
         }
+        this.tearDown();
     }
 
     private runTestCase(testable: (typeof Testable)) {
