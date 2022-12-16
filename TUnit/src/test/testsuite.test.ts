@@ -23,32 +23,36 @@ export default class TestSuiteTest extends TestCase {
         const tests = [TC1, TC2, TS];
         const testSuite = new TestSuite(tests);
         testSuite.run();
-        const reportGenerator = new ReportGenerator();
         const result = testSuite.getResult();
-        reportGenerator.addResult(...result);
         assertEqual(
-            reportGenerator.report,
-`
-===============Test_Result===============
-Summary:
-    Total: 4
-    Success: 2
-    Fail: 2
-
-TC1:
-    Result: Success
-
-TC2:
-    Result: Fail
-    Cause: IT MUST BE FAILED
-
-TC3:
-    Result: Success
-
-TC4:
-    Result: Fail
-    Cause: IT MUST BE FAILED
-`
-        )
+            result[0],
+            {
+                testcaseName: 'TC1',
+                isSuccess: true,
+            }
+        );
+        assertEqual(
+            result[1],
+            {
+                testcaseName: 'TC2',
+                isSuccess: false,
+                cause: 'IT MUST BE FAILED'
+            }
+        );
+        assertEqual(
+            result[2],
+            {
+                testcaseName: 'TC3',
+                isSuccess: true,
+            }
+        );
+        assertEqual(
+            result[3],
+            {
+                testcaseName: 'TC4',
+                isSuccess: false,
+                cause: 'IT MUST BE FAILED'
+            }
+        );
     }
 }

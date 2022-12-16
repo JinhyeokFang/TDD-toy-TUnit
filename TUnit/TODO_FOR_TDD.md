@@ -15,7 +15,8 @@
 - *assertEqual() with lodash*
 - *assertEqual 제외 모든 assert문 제거*
 - *assertThrowError()*
-- **resultReport() TestSuite에서 제거**
+- *resultReport() TestSuite에서 제거*
+- **TestSuiteTest에서 ReportGenerator 제거**
 - *fail()*
 
 - **진행중인 항목 표시**
