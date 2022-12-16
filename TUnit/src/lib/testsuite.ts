@@ -1,5 +1,3 @@
-import ReportGenerator from "./report-generator";
-import TestCase from "./testcase"
 import TestResult from './test-result';
 import Testable from "./testable";
 
@@ -27,12 +25,6 @@ export default class TestSuite extends Testable {
 
     private addTestCaseResult(testcaseResult: TestResult[]) {
         this.result = this.result.concat(testcaseResult);
-    }
-
-    resultReport() {
-        const reportGenerator = new ReportGenerator();
-        reportGenerator.addResult(...this.result);
-        return reportGenerator.report;
     }
 
     getResult(): TestResult[] {

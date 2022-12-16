@@ -1,3 +1,4 @@
+import ReportGenerator from '../lib/report-generator';
 import TestSuite from '../lib/testsuite';
 import AssertTest from './assert.test';
 import ReportGeneratorTest from './report-generator.test';
@@ -12,6 +13,12 @@ class TUnitTest extends TestSuite {
             TestsuiteTest,
             ReportGeneratorTest,
         ]);
+    }
+
+    resultReport() {
+        const reportGenerator = new ReportGenerator();
+        reportGenerator.addResult(...this.getResult());
+        return reportGenerator.report;
     }
 }
 

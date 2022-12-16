@@ -1,5 +1,6 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
+import ReportGenerator from "../lib/report-generator";
 import TestCase from "../lib/testcase";
 import TestSuite from "../lib/testsuite";
 
@@ -22,8 +23,11 @@ export default class TestSuiteTest extends TestCase {
         const tests = [TC1, TC2, TS];
         const testSuite = new TestSuite(tests);
         testSuite.run();
+        const reportGenerator = new ReportGenerator();
+        const result = testSuite.getResult();
+        reportGenerator.addResult(...result);
         assertEqual(
-            testSuite.resultReport(),
+            reportGenerator.report,
 `
 ===============Test_Result===============
 Summary:
