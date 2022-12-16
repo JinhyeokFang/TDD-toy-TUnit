@@ -17,7 +17,7 @@
 - *assertThrowError()*
 - *resultReport() TestSuite에서 제거*
 - *TestSuiteTest에서 ReportGenerator 제거*
-- **TestSuite에서 setUp, tearDown**
+- *TestSuite에서 setUp, tearDown*
 - *fail()*
 
 - **진행중인 항목 표시**

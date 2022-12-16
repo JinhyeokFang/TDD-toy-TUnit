@@ -16,12 +16,12 @@ export default class TestSuite extends Testable {
     run() {
         this.setUp();
         for (const testcase of this.testcases) {
-            this.runTestCase(testcase);
+            this.runTest(testcase);
         }
         this.tearDown();
     }
 
-    private runTestCase(testable: (typeof Testable)) {
+    private runTest(testable: (typeof Testable)) {
         const testInstance = new testable();
         testInstance.run();
         const result = testInstance.getResult();
