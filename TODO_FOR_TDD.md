@@ -4,18 +4,20 @@
 - *commitizen, husky 도입*
 - *TestState*
 - *에러가 있으면 process exit*
-- 결과 출력 시 테스트 슈트 별로 묶어서 출력하기
+- **Report Generator 리팩토링**
+- Child Test Result in Report
+- 결과 출력 시 테스트 슈트 별로 묶어서 출력하기*
 - 트리 형태로 출력하기
 - 트리 형태로 테스트 결과 object로 표현하기
 - Logger customize
 - AssertEqual Generic
 - errorMessage 통일
-- **export default 제거**
+- *export default 제거*
 - testcaseName 부분 설명 보충
 - isEqual without lodash
 - assert(boolean)
 - async test(), run()
-- testSuite setUp(), tearDown()
+- *testSuite setUp(), tearDown()*
 - index.ts
 
 <br>

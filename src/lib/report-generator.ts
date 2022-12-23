@@ -1,3 +1,4 @@
+import { ResultSummarizer } from './result-summarizer';
 import { TestResult } from './test-result';
 
 export class ReportGenerator {
@@ -14,7 +15,9 @@ export class ReportGenerator {
     }
 
     private getResultSummaryReport() {
-        const resultSummary = this.getResult();
+        const resultSummarizer = new ResultSummarizer();
+        resultSummarizer.addResult(...this.result);
+        const resultSummary = resultSummarizer.summary;
         const reportSummary = `
 ===============Test_Result===============
 Summary:
@@ -52,13 +55,5 @@ ${testcaseResult.testcaseName}:
     Result: Fail
     Cause: ${testcaseResult.cause}
 `;
-    }
-
-    private getResult() {
-        return {
-            total: this.result.length,
-            success: this.result.filter(r => r.isSuccess).length,
-            fail: this.result.filter(r => !r.isSuccess).length,
-        };
     }
 }
