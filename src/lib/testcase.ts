@@ -30,7 +30,7 @@ export default class TestCase extends Testable {
             });
         } catch (error) {
             this.result.push({
-                isSuccess: true,
+                isSuccess: false,
                 testcaseName: this.testcaseName,
                 cause: error.message,
             });

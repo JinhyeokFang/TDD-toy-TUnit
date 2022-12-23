@@ -24,13 +24,14 @@ class UnsuccessfulTest extends Testable {
 
 export default class TestableTest extends TestCase {
     test() {
+        const test = new Testable();
+        assertEqual(TestState.NotBeTested, test.state, 'state should be NotBeTested');
+
         const successfulTest = new SuccessfulTest();
-        assertEqual(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
         successfulTest.run();
         assertEqual(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
 
         const unsuccessfulTest = new UnsuccessfulTest();
-        assertEqual(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
         unsuccessfulTest.run();
         assertEqual(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
     }
