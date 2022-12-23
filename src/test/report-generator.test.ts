@@ -6,27 +6,27 @@ export class ReportGeneratorTest extends TestCase {
     test() {
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult({
-            testcaseName: 'TC1',
+            testName: 'TC1',
             isSuccess: true,
         });
         reportGenerator.addResult({
-            testcaseName: 'TC2',
+            testName: 'TC2',
             isSuccess: false,
             cause: 'IT MUST BE FAILED',
         });
         reportGenerator.addResult({
-            testcaseName: 'TS',
+            testName: 'TS',
             isSuccess: true,
             children: [{
-                testcaseName: 'TC3',
+                testName: 'TC3',
                 isSuccess: true,
             },
             {
-                testcaseName: 'TC4',
+                testName: 'TC4',
                 isSuccess: true,
             }],
         });
-        assertEqual(reportGenerator.report, `
+        assertEqual<string>(reportGenerator.report, `
 ===============Test_Result===============
 Summary:
     Total: 4

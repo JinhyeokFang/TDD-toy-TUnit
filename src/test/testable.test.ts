@@ -8,7 +8,7 @@ class SuccessfulTest extends Testable {
     getResult(): TestResult[] {
         return [{
             isSuccess: true,
-            testcaseName: 'Test'
+            testName: 'Test'
         }];
     }
 }
@@ -17,7 +17,7 @@ class UnsuccessfulTest extends Testable {
     getResult(): TestResult[] {
         return [{
             isSuccess: false,
-            testcaseName: 'Test'
+            testName: 'Test'
         }];
     }
 }
@@ -25,14 +25,14 @@ class UnsuccessfulTest extends Testable {
 export class TestableTest extends TestCase {
     test() {
         const test = new Testable();
-        assertEqual(TestState.NotBeTested, test.state, 'state should be NotBeTested');
+        assertEqual<TestState>(TestState.NotBeTested, test.state, 'state should be NotBeTested');
 
         const successfulTest = new SuccessfulTest();
         successfulTest.run();
-        assertEqual(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
+        assertEqual<TestState>(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
 
         const unsuccessfulTest = new UnsuccessfulTest();
         unsuccessfulTest.run();
-        assertEqual(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
+        assertEqual<TestState>(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
     }
 }

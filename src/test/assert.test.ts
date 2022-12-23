@@ -13,8 +13,8 @@ export class AssertTest extends TestSuite {
 
 class AssertEqualTest extends TestCase {
     test(): void {
-        assertEqual('hi', 'hi');
-        assertEqual({
+        assertEqual<string>('hi', 'hi');
+        assertEqual<{hi: string}>({
             hi: 'Hello',
         }, {
             hi: 'Hello',

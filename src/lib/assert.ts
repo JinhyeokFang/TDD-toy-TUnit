@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash'
 
-export function assertEqual(
-    expected: any, received: any, errorMessage?: string
+export function assertEqual<T>(
+    expected: T, received: T, errorMessage?: string
 ): void {
     const equalivant = isEqual(expected, received);
     if (!equalivant)

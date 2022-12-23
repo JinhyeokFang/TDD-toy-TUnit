@@ -1,5 +1,6 @@
 import { assertEqual } from '../lib/assert';
 import { ReportGenerator } from '../lib/report-generator';
+import { TestResult } from '../lib/test-result';
 import { TestCase } from '../lib/testcase';
 import { TestSuite } from '../lib/testsuite';
 import { TUnit } from '../lib/tunit';
@@ -32,9 +33,9 @@ export class TUnitTest extends TestCase {
             delete test.testName;
         });
 
-        assertEqual(testSuiteResult, tunitResult);
+        assertEqual<TestResult[]>(testSuiteResult, tunitResult);
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult(...testSuiteResult);
-        assertEqual(reportGenerator.report, tunit.report);
+        assertEqual<string>(reportGenerator.report, tunit.report);
     }
 }

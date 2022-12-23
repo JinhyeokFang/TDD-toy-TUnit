@@ -1,5 +1,6 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
+import { TestResult } from "../lib/test-result";
 import { TestCase } from "../lib/testcase";
 import { TestState } from "../lib/teststate";
 import { TestSuite } from "../lib/testsuite";
@@ -36,7 +37,7 @@ class TestCaseLogTest extends TestCase {
     test() {
         const tc = new TestCaseForTest();
         tc.run();
-        assertEqual(tc.logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
+        assertEqual<string>(tc.logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
     }
 }
 
@@ -47,8 +48,8 @@ class TestCaseResultTest extends TestCase {
             tc2.run();
         } catch {}
         const result = tc2.getResult();
-        assertEqual(result[0], {
-            testcaseName: 'TestCaseForFail',
+        assertEqual<TestResult>(result[0], {
+            testName: 'TestCaseForFail',
             isSuccess: false,
             cause: 'ERROR'
         });
@@ -58,13 +59,13 @@ class TestCaseResultTest extends TestCase {
 class TestcaseStateTest extends TestCase {
     test() {
         const successfulTest = new TestCaseForTest();
-        assertEqual(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
+        assertEqual<TestState>(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
         successfulTest.run();
-        assertEqual(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
+        assertEqual<TestState>(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
 
         const unsuccessfulTest = new TestCaseForFail();
-        assertEqual(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
+        assertEqual<TestState>(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
         unsuccessfulTest.run();
-        assertEqual(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
+        assertEqual<TestState>(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
     }
 }
