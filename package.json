@@ -2,14 +2,22 @@
   "name": "tunit",
   "devDependencies": {
     "@types/lodash": "^4.14.191",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.2",
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "test": "tsc && node dist/test/test.js"
+    "test": "tsc && node dist/test/test.js",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "lodash": "^4.17.21"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
