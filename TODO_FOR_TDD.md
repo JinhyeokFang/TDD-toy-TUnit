@@ -6,7 +6,8 @@
 - *에러가 있으면 process exit*
 - *Report Generator 리팩토링*
 - *Child Test Result in Report*
-- **테스트 슈트 안 모든 테스트 TestResult.children으로 넣기**
+- *테스트 슈트 안 모든 테스트 TestResult.children으로 넣기*
+- **testcaseName 리팩토링**
 - Logger customize
 - AssertEqual Generic
 - errorMessage 통일

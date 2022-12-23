@@ -22,4 +22,11 @@ export class Testable {
         const isFailedTestExist = failedTest !== undefined;
         return isFailedTestExist;
     }
+
+    static getTestName(test: Testable): string {
+        return test.constructor
+            .toString()
+            .split(' ')[1]
+            .slice(0, -2);
+    }
 }

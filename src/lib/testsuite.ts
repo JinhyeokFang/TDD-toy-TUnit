@@ -3,15 +3,10 @@ import { Testable } from "./testable";
 
 export class TestSuite extends Testable {
     private tests: (typeof Testable)[] = [];
-    private testcaseName: string;
     private result: TestResult[] = []; 
 
     constructor(tests: (typeof Testable)[]) {
         super();
-        this.testcaseName = this.constructor
-            .toString()
-            .split(' ')[1]
-            .slice(0, -2);
         this.tests = tests;
     }
     
@@ -20,7 +15,7 @@ export class TestSuite extends Testable {
 
     run() {
         this.result = [{
-            testcaseName: this.testcaseName,
+            testcaseName: Testable.getTestName(this),
             isSuccess: true,
             children: []
         }];

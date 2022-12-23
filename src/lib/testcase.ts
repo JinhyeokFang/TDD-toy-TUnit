@@ -2,15 +2,10 @@ import { TestResult } from './test-result';
 import { Testable } from './testable';
 
 export class TestCase extends Testable {
-    private testcaseName: string;
     private result: TestResult[] = [];
 
     constructor() {
         super();
-        this.testcaseName = this.constructor
-            .toString()
-            .split(' ')[1]
-            .slice(0, -2);
     }
     
     protected setUp() {};
@@ -26,12 +21,12 @@ export class TestCase extends Testable {
             this.test();
             this.result.push({
                 isSuccess: true,
-                testcaseName: this.testcaseName,
+                testcaseName: Testable.getTestName(this),
             });
         } catch (error) {
             this.result.push({
                 isSuccess: false,
-                testcaseName: this.testcaseName,
+                testcaseName: Testable.getTestName(this),
                 cause: error.message,
             });
         }
