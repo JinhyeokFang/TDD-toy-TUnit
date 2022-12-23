@@ -26,10 +26,10 @@ export class TUnitTest extends TestCase {
         const testSuiteResult = testSuite.getResult();
 
         tunitResult.forEach(test => {
-            delete test.testcaseName;
+            delete test.testName;
         });
         testSuiteResult.forEach(test => {
-            delete test.testcaseName;
+            delete test.testName;
         });
 
         assertEqual(testSuiteResult, tunitResult);

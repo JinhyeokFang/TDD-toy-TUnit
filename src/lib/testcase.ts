@@ -21,12 +21,12 @@ export class TestCase extends Testable {
             this.test();
             this.result.push({
                 isSuccess: true,
-                testcaseName: Testable.getTestName(this),
+                testName: Testable.getTestName(this),
             });
         } catch (error) {
             this.result.push({
                 isSuccess: false,
-                testcaseName: Testable.getTestName(this),
+                testName: Testable.getTestName(this),
                 cause: error.message,
             });
         }

@@ -15,7 +15,7 @@ export class TestSuite extends Testable {
 
     run() {
         this.result = [{
-            testcaseName: Testable.getTestName(this),
+            testName: Testable.getTestName(this),
             isSuccess: true,
             children: []
         }];

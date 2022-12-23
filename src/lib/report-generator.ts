@@ -46,7 +46,7 @@ Summary:
 
     private getReportsFromChildren(testcaseResult: TestResult) {
         let report = `
-${testcaseResult.testcaseName}:
+${testcaseResult.testName}:
     Result: ${testcaseResult.isSuccess ? 'Success' : 'Fail'}`;
         for (const test of testcaseResult.children) {
             report += this.getChildReport(test);
@@ -64,14 +64,14 @@ ${testcaseResult.testcaseName}:
 
     private getSuccessReport(testcaseResult: TestResult) {
         return `
-${testcaseResult.testcaseName}:
+${testcaseResult.testName}:
     Result: Success
 `;
     }
 
     private getFailReport(testcaseResult: TestResult) {
         return `
-${testcaseResult.testcaseName}:
+${testcaseResult.testName}:
     Result: Fail
     Cause: ${testcaseResult.cause}
 `;

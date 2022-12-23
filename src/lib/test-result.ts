@@ -1,5 +1,5 @@
 export interface TestResult {
-    testcaseName: string;
+    testName: string;
     isSuccess: boolean;
     cause?: string;
     children?: TestResult[];
