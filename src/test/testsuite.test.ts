@@ -22,7 +22,7 @@ class TS1 extends TestSuite {
         super([TC3, TC4]);
     }
     tearDown() {
-        if (this.getResult().length === 2)
+        if (this.getResult().length > 0)
             this.logForTest.push('test');
         this.logForTest.push('tearDown');
     }
@@ -46,7 +46,8 @@ class TestSuiteTestMethodTest extends TestCase {
         const tests = [TC1, TC2, TS1];
         const testSuite = new TestSuite(tests);
         testSuite.run();
-        const result = testSuite.getResult();
+        const result = testSuite.getResult()[0].children;
+        const testSuiteChildren = result[2].children;
         assertEqual(
             result[0],
             {
@@ -63,14 +64,14 @@ class TestSuiteTestMethodTest extends TestCase {
             }
         );
         assertEqual(
-            result[2],
+            testSuiteChildren[0],
             {
                 testcaseName: 'TC3',
                 isSuccess: true,
             }
         );
         assertEqual(
-            result[3],
+            testSuiteChildren[1],
             {
                 testcaseName: 'TC4',
                 isSuccess: false,

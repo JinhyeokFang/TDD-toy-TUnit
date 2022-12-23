@@ -5,10 +5,8 @@
 - *TestState*
 - *에러가 있으면 process exit*
 - *Report Generator 리팩토링*
-- **Child Test Result in Report**
-- 결과 출력 시 테스트 슈트 별로 묶어서 출력하기*
-- 트리 형태로 출력하기
-- 트리 형태로 테스트 결과 object로 표현하기
+- *Child Test Result in Report*
+- **테스트 슈트 안 모든 테스트 TestResult.children으로 넣기**
 - Logger customize
 - AssertEqual Generic
 - errorMessage 통일

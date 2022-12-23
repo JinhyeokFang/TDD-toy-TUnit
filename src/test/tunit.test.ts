@@ -24,6 +24,14 @@ export class TUnitTest extends TestCase {
         testSuite.run();
         const tunitResult = tunit.getResult();
         const testSuiteResult = testSuite.getResult();
+
+        tunitResult.forEach(test => {
+            delete test.testcaseName;
+        });
+        testSuiteResult.forEach(test => {
+            delete test.testcaseName;
+        });
+
         assertEqual(testSuiteResult, tunitResult);
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult(...testSuiteResult);
