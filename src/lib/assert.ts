@@ -5,7 +5,7 @@ export function assertEqual(
 ): void {
     const equalivant = isEqual(expected, received);
     if (!equalivant)
-        throw new Error(errorMessage || `Expected ${expected} but Received ${received}`);
+        throw new Error(errorMessage || `Expected [${expected}] but Received [${received}]`);
 }
 
 export function assertThrowError(

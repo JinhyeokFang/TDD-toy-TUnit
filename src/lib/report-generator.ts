@@ -31,15 +31,35 @@ Summary:
     private getTestSuiteDetailResultReport() {
         let resultDetail = '';
         for (const testcaseResult of this.result) {
-            resultDetail += this.getTestCaseReport(testcaseResult);
+            resultDetail += this.getTestReport(testcaseResult);
         }
         return resultDetail;
     }
 
-    private getTestCaseReport(testcaseResult: TestResult) {
+    private getTestReport(testcaseResult: TestResult) {
+        if (testcaseResult.children)
+            return this.getReportsFromChildren(testcaseResult);
         if (testcaseResult.isSuccess)
             return this.getSuccessReport(testcaseResult);
         return this.getFailReport(testcaseResult);
+    }
+
+    private getReportsFromChildren(testcaseResult: TestResult) {
+        let report = `
+${testcaseResult.testcaseName}:
+    Result: ${testcaseResult.isSuccess ? 'Success' : 'Fail'}`;
+        for (const test of testcaseResult.children) {
+            report += this.getChildReport(test);
+        }
+        return report;
+    }
+
+    private getChildReport(childTestResult: TestResult) {
+        let childReport = this.getTestReport(childTestResult);
+        childReport = childReport
+            .split('\n')
+            .join('\n    ');
+        return childReport;
     }
 
     private getSuccessReport(testcaseResult: TestResult) {

@@ -4,7 +4,18 @@ export class ResultSummarizer {
     private result: TestResult[] = [];
 
     addResult(...testcaseResult: TestResult[]) {
-        this.result = this.result.concat(testcaseResult);
+        for (const test of testcaseResult) {
+            if (test.children)
+                this.splitAndAddTestResult(test);
+            else
+                this.result.push(test);
+        }
+    }
+
+    private splitAndAddTestResult(result: TestResult) {
+        const resultSummarizer = new ResultSummarizer();
+        resultSummarizer.addResult(...result.children);
+        this.result = this.result.concat(resultSummarizer.result);
     }
     
     get summary() {

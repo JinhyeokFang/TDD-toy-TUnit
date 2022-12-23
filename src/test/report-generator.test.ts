@@ -13,12 +13,24 @@ export class ReportGeneratorTest extends TestCase {
             testcaseName: 'TC2',
             isSuccess: false,
             cause: 'IT MUST BE FAILED',
-        })
+        });
+        reportGenerator.addResult({
+            testcaseName: 'TS',
+            isSuccess: true,
+            children: [{
+                testcaseName: 'TC3',
+                isSuccess: true,
+            },
+            {
+                testcaseName: 'TC4',
+                isSuccess: true,
+            }],
+        });
         assertEqual(reportGenerator.report, `
 ===============Test_Result===============
 Summary:
-    Total: 2
-    Success: 1
+    Total: 4
+    Success: 3
     Fail: 1
 
 TC1:
@@ -27,7 +39,15 @@ TC1:
 TC2:
     Result: Fail
     Cause: IT MUST BE FAILED
-`
+
+TS:
+    Result: Success
+    TC3:
+        Result: Success
+    
+    TC4:
+        Result: Success
+    `
         );
     }
 }
