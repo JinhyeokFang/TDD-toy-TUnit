@@ -2,20 +2,24 @@ import TestResult from "./test-result";
 import { TestState } from "./teststate";
 
 export default class Testable {
-    private testState = TestState.NotBeTested;
-
-    protected testFailed(): void {
-        this.testState = TestState.Failed;
-    }
-
-    protected testSucceeded(): void {
-        this.testState = TestState.Succeeded;
-    }
-
     run(): void {};
     getResult(): TestResult[] { return [] };
 
     get state(): TestState {
-        return this.testState;
+        if (!this.isTestResultExist())
+            return TestState.NotBeTested;
+        if (this.isFailedTestResultExist())
+            return TestState.Failed;
+        return TestState.Succeeded;
+    }
+
+    private isTestResultExist(): boolean {
+        return this.getResult().length > 0;
+    }
+
+    private isFailedTestResultExist(): boolean {
+        const failedTest = this.getResult().find(test => test.isSuccess === false);
+        const isFailedTestExist = failedTest !== undefined;
+        return isFailedTestExist;
     }
 }

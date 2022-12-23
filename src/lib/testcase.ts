@@ -2,14 +2,12 @@ import TestResult from './test-result';
 import Testable from './testable';
 
 export default class TestCase extends Testable {
-    private result: TestResult = {
-        testcaseName: '',
-        isSuccess: false,
-    }
+    private testcaseName: string;
+    private result: TestResult[] = [];
 
     constructor() {
         super();
-        this.result.testcaseName = this.constructor
+        this.testcaseName = this.constructor
             .toString()
             .split(' ')[1]
             .slice(0, -2);
@@ -23,19 +21,24 @@ export default class TestCase extends Testable {
 
     run() {
         this.setUp();
+        this.result = [];
         try {
             this.test();
-            this.result.isSuccess = true;
-            this.testSucceeded();
+            this.result.push({
+                isSuccess: true,
+                testcaseName: this.testcaseName,
+            });
         } catch (error) {
-            this.result.isSuccess = false;
-            this.result.cause = error.message;
-            this.testFailed();
+            this.result.push({
+                isSuccess: true,
+                testcaseName: this.testcaseName,
+                cause: error.message,
+            });
         }
         this.tearDown();
     }
 
     getResult() {
-        return [this.result];
+        return this.result;
     }
 }

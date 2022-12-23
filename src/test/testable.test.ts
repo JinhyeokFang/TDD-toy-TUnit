@@ -1,17 +1,24 @@
 import { assertEqual } from "../lib/assert";
+import testResult from "../lib/test-result";
 import Testable from "../lib/testable";
 import TestCase from "../lib/testcase";
 import { TestState } from "../lib/teststate";
 
 class SuccessfulTest extends Testable {
-    run() {
-        this.testSucceeded();
+    getResult(): testResult[] {
+        return [{
+            isSuccess: true,
+            testcaseName: 'Test'
+        }];
     }
 }
 
 class UnsuccessfulTest extends Testable {
-    run() {
-        this.testFailed();
+    getResult(): testResult[] {
+        return [{
+            isSuccess: false,
+            testcaseName: 'Test'
+        }];
     }
 }
 
