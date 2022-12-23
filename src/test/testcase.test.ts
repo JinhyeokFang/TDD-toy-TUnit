@@ -1,6 +1,7 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
 import TestCase from "../lib/testcase";
+import { TestState } from "../lib/teststate";
 import TestSuite from "../lib/testsuite";
 
 class TestCaseForTest extends TestCase {
@@ -26,6 +27,7 @@ export default class TestCaseTest extends TestSuite {
         super([
             TestCaseLogTest, 
             TestCaseResultTest,
+            TestcaseStateTest,
         ])
     }
 }
@@ -50,5 +52,19 @@ class TestCaseResultTest extends TestCase {
             isSuccess: false,
             cause: 'ERROR'
         });
+    }
+}
+
+class TestcaseStateTest extends TestCase {
+    test() {
+        const successfulTest = new TestCaseForTest();
+        assertEqual(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
+        successfulTest.run();
+        assertEqual(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
+
+        const unsuccessfulTest = new TestCaseForFail();
+        assertEqual(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
+        unsuccessfulTest.run();
+        assertEqual(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
     }
 }

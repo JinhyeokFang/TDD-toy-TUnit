@@ -1,6 +1,7 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
 import TestCase from "../lib/testcase";
+import { TestState } from "../lib/teststate";
 import TestSuite from "../lib/testsuite";
 
 class TC1 extends TestCase { test() {} }
@@ -11,7 +12,7 @@ class TC3 extends TestCase { test() {} }
 class TC4 extends TestCase { test() {
     fail('IT MUST BE FAILED');
 } }
-class TS extends TestSuite {
+class TS1 extends TestSuite {
     logForTest: string[] = [];
 
     setUp() {
@@ -26,18 +27,23 @@ class TS extends TestSuite {
         this.logForTest.push('tearDown');
     }
 }
+class TS2 extends TestSuite {
+    constructor() {
+        super([TC3]);
+    }
+}
 
 export default class TestSuiteTest extends TestSuite {
     constructor() {
         super([
-            TestSuiteTestMethodTest, TestSuiteLogTest
+            TestSuiteTestMethodTest, TestSuiteLogTest, TestsuiteStateTest,
         ])
     }
 }
 
 export class TestSuiteTestMethodTest extends TestCase {
     test() {
-        const tests = [TC1, TC2, TS];
+        const tests = [TC1, TC2, TS1];
         const testSuite = new TestSuite(tests);
         testSuite.run();
         const result = testSuite.getResult();
@@ -76,9 +82,23 @@ export class TestSuiteTestMethodTest extends TestCase {
 
 export class TestSuiteLogTest extends TestCase {
     test() {
-        const testSuite: TestSuite = new TS();
+        const testSuite: TestSuite = new TS1();
         testSuite.run();
-        const logForTest = (testSuite as TS).logForTest;
+        const logForTest = (testSuite as TS1).logForTest;
         assertEqual(logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
+    }
+}
+
+class TestsuiteStateTest extends TestCase {
+    test() {
+        const successfulTest = new TS2();
+        assertEqual(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
+        successfulTest.run();
+        assertEqual(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
+
+        const unsuccessfulTest = new TS1();
+        assertEqual(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
+        unsuccessfulTest.run();
+        assertEqual(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
     }
 }

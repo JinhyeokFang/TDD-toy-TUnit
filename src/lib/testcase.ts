@@ -26,9 +26,11 @@ export default class TestCase extends Testable {
         try {
             this.test();
             this.result.isSuccess = true;
+            this.testSucceeded();
         } catch (error) {
             this.result.isSuccess = false;
             this.result.cause = error.message;
+            this.testFailed();
         }
         this.tearDown();
     }
