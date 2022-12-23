@@ -1,7 +1,7 @@
-import TestResult from './test-result';
-import Testable from "./testable";
+import { TestResult } from './test-result';
+import { Testable } from "./testable";
 
-export default class TestSuite extends Testable {
+export class TestSuite extends Testable {
     private tests: (typeof Testable)[] = [];
     private result: TestResult[] = []; 
 

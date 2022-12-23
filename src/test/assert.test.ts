@@ -1,8 +1,8 @@
 import { assertEqual, assertThrowError } from "../lib/assert";
-import TestCase from "../lib/testcase";
-import TestSuite from "../lib/testsuite";
+import { TestCase } from "../lib/testcase";
+import { TestSuite } from "../lib/testsuite";
 
-export default class AssertTest extends TestSuite {
+export class AssertTest extends TestSuite {
     constructor() {
         super([
             AssertEqualTest, 

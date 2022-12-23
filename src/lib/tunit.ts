@@ -1,9 +1,9 @@
-import ReportGenerator from "./report-generator";
-import Testable from "./testable";
+import { ReportGenerator } from "./report-generator";
+import { Testable } from "./testable";
 import { TestState } from "./teststate";
-import TestSuite from "./testsuite";
+import { TestSuite } from "./testsuite";
 
-export default class TUnit extends TestSuite {
+export class TUnit extends TestSuite {
     constructor(tests: (typeof Testable)[]) {
         super(tests);
     }

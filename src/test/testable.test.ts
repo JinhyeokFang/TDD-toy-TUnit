@@ -1,11 +1,11 @@
 import { assertEqual } from "../lib/assert";
-import testResult from "../lib/test-result";
-import Testable from "../lib/testable";
-import TestCase from "../lib/testcase";
+import { TestResult } from "../lib/test-result";
+import { Testable } from "../lib/testable";
+import { TestCase } from "../lib/testcase";
 import { TestState } from "../lib/teststate";
 
 class SuccessfulTest extends Testable {
-    getResult(): testResult[] {
+    getResult(): TestResult[] {
         return [{
             isSuccess: true,
             testcaseName: 'Test'
@@ -14,7 +14,7 @@ class SuccessfulTest extends Testable {
 }
 
 class UnsuccessfulTest extends Testable {
-    getResult(): testResult[] {
+    getResult(): TestResult[] {
         return [{
             isSuccess: false,
             testcaseName: 'Test'
@@ -22,7 +22,7 @@ class UnsuccessfulTest extends Testable {
     }
 }
 
-export default class TestableTest extends TestCase {
+export class TestableTest extends TestCase {
     test() {
         const test = new Testable();
         assertEqual(TestState.NotBeTested, test.state, 'state should be NotBeTested');

@@ -1,6 +1,6 @@
-import TestResult from './test-result';
+import { TestResult } from './test-result';
 
-export default class ReportGenerator {
+export class ReportGenerator {
     private result: TestResult[] = [];
 
     addResult(...testcaseResult: TestResult[]) {

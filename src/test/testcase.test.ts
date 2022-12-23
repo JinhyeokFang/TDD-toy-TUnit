@@ -1,8 +1,8 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
-import TestCase from "../lib/testcase";
+import { TestCase } from "../lib/testcase";
 import { TestState } from "../lib/teststate";
-import TestSuite from "../lib/testsuite";
+import { TestSuite } from "../lib/testsuite";
 
 class TestCaseForTest extends TestCase {
     logForTest: string[] = [];
@@ -22,7 +22,7 @@ class TestCaseForFail extends TestCase {
     }
 }
 
-export default class TestCaseTest extends TestSuite {
+export class TestCaseTest extends TestSuite {
     constructor() {
         super([
             TestCaseLogTest, 

@@ -1,8 +1,8 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
-import TestCase from "../lib/testcase";
+import { TestCase } from "../lib/testcase";
 import { TestState } from "../lib/teststate";
-import TestSuite from "../lib/testsuite";
+import { TestSuite } from "../lib/testsuite";
 
 class TC1 extends TestCase { test() {} }
 class TC2 extends TestCase { test() {
@@ -33,7 +33,7 @@ class TS2 extends TestSuite {
     }
 }
 
-export default class TestSuiteTest extends TestSuite {
+export class TestSuiteTest extends TestSuite {
     constructor() {
         super([
             TestSuiteTestMethodTest, TestSuiteLogTest, TestsuiteStateTest,
@@ -41,7 +41,7 @@ export default class TestSuiteTest extends TestSuite {
     }
 }
 
-export class TestSuiteTestMethodTest extends TestCase {
+class TestSuiteTestMethodTest extends TestCase {
     test() {
         const tests = [TC1, TC2, TS1];
         const testSuite = new TestSuite(tests);
@@ -80,7 +80,7 @@ export class TestSuiteTestMethodTest extends TestCase {
     }
 }
 
-export class TestSuiteLogTest extends TestCase {
+class TestSuiteLogTest extends TestCase {
     test() {
         const testSuite: TestSuite = new TS1();
         testSuite.run();

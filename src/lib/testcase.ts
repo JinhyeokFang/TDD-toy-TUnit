@@ -1,7 +1,7 @@
-import TestResult from './test-result';
-import Testable from './testable';
+import { TestResult } from './test-result';
+import { Testable } from './testable';
 
-export default class TestCase extends Testable {
+export class TestCase extends Testable {
     private testcaseName: string;
     private result: TestResult[] = [];
 

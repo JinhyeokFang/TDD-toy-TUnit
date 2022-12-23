@@ -1,4 +1,4 @@
-export default interface TestResult {
+export interface TestResult {
     testcaseName: string;
     isSuccess: boolean;
     cause?: string;

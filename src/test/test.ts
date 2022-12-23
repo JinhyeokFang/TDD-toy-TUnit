@@ -1,16 +1,16 @@
-import TUnit from "../lib/tunit";
-import AssertTest from './assert.test';
-import ReportGeneratorTest from './report-generator.test';
-import TestableTest from "./testable.test";
-import TestcaseTest from './testcase.test';
-import TestsuiteTest from './testsuite.test';
-import TUnitTest from "./tunit.test";
+import { TUnit } from "../lib/tunit";
+import { AssertTest } from './assert.test';
+import { ReportGeneratorTest } from './report-generator.test';
+import { TestableTest } from "./testable.test";
+import { TestCaseTest } from './testcase.test';
+import { TestSuiteTest } from './testsuite.test';
+import { TUnitTest } from "./tunit.test";
 
 TUnit.test([
-    TestcaseTest,
     AssertTest,
-    TestsuiteTest,
+    TestableTest,
+    TestCaseTest,
+    TestSuiteTest,
     ReportGeneratorTest,
     TUnitTest,
-    TestableTest,
 ]);

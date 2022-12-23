@@ -1,7 +1,7 @@
-import TestResult from "./test-result";
+import { TestResult } from "./test-result";
 import { TestState } from "./teststate";
 
-export default class Testable {
+export class Testable {
     run(): void {};
     getResult(): TestResult[] { return [] };
 
