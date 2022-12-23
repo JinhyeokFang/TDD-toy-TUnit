@@ -1,11 +1,15 @@
 import { isEqual } from 'lodash'
+import { TestError } from './test-error';
 
 export function assertEqual<T>(
     expected: T, received: T, errorMessage?: string
 ): void {
     const equalivant = isEqual(expected, received);
     if (!equalivant)
-        throw new Error(errorMessage || `Expected [${expected}] but Received [${received}]`);
+        throw new TestError(
+            assertEqualDefaultErrorMessage(expected, received),
+            errorMessage
+        );
 }
 
 export function assertThrowError(
@@ -16,5 +20,16 @@ export function assertThrowError(
     } catch {
         return;
     }
-    throw new Error(errorMessage);
+    throw new TestError(
+        assertThrowErrorDefaultErrorMessage(),
+        errorMessage
+    );
+}
+
+function assertEqualDefaultErrorMessage(expected: any, received: any) {
+    return `Expected [${expected}] but Received [${received}]`;
+}
+
+function assertThrowErrorDefaultErrorMessage() {
+    return `Received function does not throw the error`;
 }
