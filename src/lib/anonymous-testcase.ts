@@ -1,6 +1,6 @@
-import { TestCase } from "./testcase";
+import { BaseTestCase } from "./base-testcase";
 
-export class AnonymousTestCase extends TestCase {
+export class AnonymousTestCase extends BaseTestCase {
     private testMethod: () => Promise<void>;
 
     private constructor(testName: string, testMethod: () => Promise<void>) {

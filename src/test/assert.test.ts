@@ -1,5 +1,5 @@
 import { assertEqual, assertThrowError } from "../lib/assert";
-import { TestCase } from "../lib/testcase";
+import { BaseTestCase } from "../lib/base-testcase";
 import { TestSuite } from "../lib/testsuite";
 
 export class AssertTest extends TestSuite {
@@ -11,7 +11,7 @@ export class AssertTest extends TestSuite {
     }
 }
 
-class AssertEqualTest extends TestCase {
+class AssertEqualTest extends BaseTestCase {
     async test() {
         assertEqual<string>('hi', 'hi');
         assertEqual<{hi: string}>({
@@ -22,7 +22,7 @@ class AssertEqualTest extends TestCase {
     }
 }
 
-class AssertThrowErrorTest extends TestCase {
+class AssertThrowErrorTest extends BaseTestCase {
     async test() {
         const ERROR_MESSAGE = '3 === 3 is false.';
         assertThrowError(() => {

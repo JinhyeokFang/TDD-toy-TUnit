@@ -1,17 +1,17 @@
 import { assertEqual } from '../lib/assert';
 import { ReportGenerator } from '../lib/report-generator';
 import { TestResult } from '../lib/test-result';
-import { TestCase } from '../lib/testcase';
+import { BaseTestCase } from '../lib/base-testcase';
 import { TestSuite } from '../lib/testsuite';
 import { TUnit } from '../lib/tunit';
 
-class TestCase1ForTUnitTest extends TestCase { async test() {} }
-class TestCase2ForTUnitTest extends TestCase { async test() {} }
+class TestCase1ForTUnitTest extends BaseTestCase { async test() {} }
+class TestCase2ForTUnitTest extends BaseTestCase { async test() {} }
 class TestSuiteForTUnitTest extends TestSuite {
     constructor() { super([ TestCase2ForTUnitTest ]); }
 }
 
-export class TUnitTest extends TestCase {
+export class TUnitTest extends BaseTestCase {
     async test() {
         const tunit = new TUnit([
             TestCase1ForTUnitTest, 

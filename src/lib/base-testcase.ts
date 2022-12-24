@@ -1,13 +1,13 @@
 import { TestResult } from './test-result';
 import { Testable } from './testable';
 
-export class TestCase extends Testable {
+export class BaseTestCase extends Testable {
     private result: TestResult[] = [];
     private testName: string;
 
     constructor(testName?: string) {
         super();
-        this.testName = testName || TestCase.getTestName(this);
+        this.testName = testName || BaseTestCase.getTestName(this);
     }
     
     protected async setUp() {};

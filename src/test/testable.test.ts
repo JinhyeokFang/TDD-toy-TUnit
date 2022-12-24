@@ -1,7 +1,7 @@
 import { assertEqual } from "../lib/assert";
 import { TestResult } from "../lib/test-result";
 import { Testable } from "../lib/testable";
-import { TestCase } from "../lib/testcase";
+import { BaseTestCase } from "../lib/base-testcase";
 import { TestState } from "../lib/teststate";
 
 class SuccessfulTest extends Testable {
@@ -22,7 +22,7 @@ class UnsuccessfulTest extends Testable {
     }
 }
 
-export class TestableTest extends TestCase {
+export class TestableTest extends BaseTestCase {
     async test() {
         const test = new Testable();
         assertEqual<TestState>(TestState.NotBeTested, test.state, 'state should be NotBeTested');

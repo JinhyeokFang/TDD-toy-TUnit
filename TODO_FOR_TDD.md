@@ -16,7 +16,8 @@
 - *TestSuite 리펙토링*
 - *async test(), run()*
 - *testSuite setUp(), tearDown()*
-- **CreateTestCase**
+- *CreateTestCase*
+- **TestCase -> BaseTestCase**
 - index.ts
 
 <br>

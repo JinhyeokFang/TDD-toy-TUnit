@@ -1,8 +1,8 @@
 import { assertEqual } from "../lib/assert";
 import { ReportGenerator } from "../lib/report-generator";
-import { TestCase } from "../lib/testcase";
+import { BaseTestCase } from "../lib/base-testcase";
 
-export class ReportGeneratorTest extends TestCase {
+export class ReportGeneratorTest extends BaseTestCase {
     async test() {
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult({

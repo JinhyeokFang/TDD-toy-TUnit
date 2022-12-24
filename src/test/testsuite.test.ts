@@ -1,16 +1,16 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
 import { TestResult } from "../lib/test-result";
-import { TestCase } from "../lib/testcase";
+import { BaseTestCase } from "../lib/base-testcase";
 import { TestState } from "../lib/teststate";
 import { TestSuite } from "../lib/testsuite";
 
-class TC1 extends TestCase { async test() {} }
-class TC2 extends TestCase { async test() {
+class TC1 extends BaseTestCase { async test() {} }
+class TC2 extends BaseTestCase { async test() {
     fail('IT MUST BE FAILED');
 } }
-class TC3 extends TestCase { async test() {} }
-class TC4 extends TestCase { async test() {
+class TC3 extends BaseTestCase { async test() {} }
+class TC4 extends BaseTestCase { async test() {
     fail('IT MUST BE FAILED');
 } }
 class TS1 extends TestSuite {
@@ -42,7 +42,7 @@ export class TestSuiteTest extends TestSuite {
     }
 }
 
-class TestSuiteTestMethodTest extends TestCase {
+class TestSuiteTestMethodTest extends BaseTestCase {
     async test() {
         const tests = [TC1, TC2, new TC3(), TS1];
         const testSuite = new TestSuite(tests);
@@ -89,7 +89,7 @@ class TestSuiteTestMethodTest extends TestCase {
     }
 }
 
-class TestSuiteLogTest extends TestCase {
+class TestSuiteLogTest extends BaseTestCase {
     async test() {
         const testSuite: TestSuite = new TS1();
         await testSuite.run();
@@ -98,7 +98,7 @@ class TestSuiteLogTest extends TestCase {
     }
 }
 
-class TestsuiteStateTest extends TestCase {
+class TestsuiteStateTest extends BaseTestCase {
     async test() {
         const successfulTest = new TS2();
         assertEqual<TestState>(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');

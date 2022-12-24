@@ -1,11 +1,11 @@
 import { assertEqual } from "../lib/assert";
 import { fail } from "../lib/fail";
 import { TestResult } from "../lib/test-result";
-import { TestCase } from "../lib/testcase";
+import { BaseTestCase } from "../lib/base-testcase";
 import { TestState } from "../lib/teststate";
 import { TestSuite } from "../lib/testsuite";
 
-class TestCaseForTest extends TestCase {
+class TestCaseForTest extends BaseTestCase {
     logForTest: string[] = [];
     async test() {
         this.logForTest.push('test');
@@ -17,7 +17,7 @@ class TestCaseForTest extends TestCase {
         this.logForTest.push('tearDown');
     }
 }
-class TestCaseForFail extends TestCase {
+class TestCaseForFail extends BaseTestCase {
     async test() {
         fail('ERROR');
     }
@@ -33,7 +33,7 @@ export class TestCaseTest extends TestSuite {
     }
 }
 
-class TestCaseLogTest extends TestCase {
+class TestCaseLogTest extends BaseTestCase {
     async test() {
         const tc = new TestCaseForTest();
         await tc.run();
@@ -41,7 +41,7 @@ class TestCaseLogTest extends TestCase {
     }
 }
 
-class TestCaseResultTest extends TestCase {
+class TestCaseResultTest extends BaseTestCase {
     async test() {
         const tc2 = new TestCaseForFail('TestCase');
         try {
@@ -56,7 +56,7 @@ class TestCaseResultTest extends TestCase {
     }
 }
 
-class TestcaseStateTest extends TestCase {
+class TestcaseStateTest extends BaseTestCase {
     async test() {
         const successfulTest = new TestCaseForTest();
         assertEqual<TestState>(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
