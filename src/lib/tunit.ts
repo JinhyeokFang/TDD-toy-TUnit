@@ -1,10 +1,10 @@
 import { ReportGenerator } from "./report-generator";
 import { TestState } from "./teststate";
-import { Test, BaseTestSuite } from "./testsuite";
+import { Test, BaseTestSuite } from "./base-testsuite";
 
 export class TUnit extends BaseTestSuite {
     constructor(tests: Test[]) {
-        super(tests);
+        super(tests, 'TUnit');
     }
 
     get report() {

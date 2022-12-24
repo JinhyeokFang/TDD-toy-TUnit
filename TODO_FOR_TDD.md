@@ -21,7 +21,10 @@
 - *AnonymousTestCase.create() -> TestCase()*
 - *테스트 케이스 재작성*
 - *TestCase() support setUp, tearDown*
-- **TestSuite -> BaseTestSuite**
+- *TestSuite -> BaseTestSuite*
+- *BaseTestSuite testName 커스텀 가능*
+- *TestSuite*
+- **테스트 슈트 재작성**
 - index.ts
 
 <br>
