@@ -6,10 +6,10 @@ import { TestState } from "../lib/teststate";
 import { TestSuite } from "../lib/testsuite";
 import { TestCase } from "../lib/testcase";
 
-const TestCase1 = TestCase('TestCase1', async () => {});
-const TestCase2 = TestCase('TestCase2', async () => {
+const TestCase1 = TestCase('TestCase1', { async test() {} });
+const TestCase2 = TestCase('TestCase2', { async test() {
     fail('IT MUST BE FAILED');
-});
+}});
 class TestCase3 extends BaseTestCase { async test() {} }
 class TestSuite1 extends TestSuite {
     logForTest: string[] = [];
@@ -28,7 +28,7 @@ class TestSuite1 extends TestSuite {
 }
 
 export class TestSuiteTest extends TestSuite {
-    static TestSuiteTestMethodTest = TestCase('testSuite.getResult()', async () => {
+    static TestSuiteTestMethodTest = TestCase('testSuite.getResult()', { async test() {
         const tests = [TestCase1, TestCase2, TestSuite1];
         const testSuite = new TestSuite(tests);
         await testSuite.run();
@@ -56,28 +56,28 @@ export class TestSuiteTest extends TestSuite {
                 isSuccess: true,
             }
         );
-    });
+    }});
 
-    static TestSuiteLogTest = TestCase('TestSuite.run()', async () => {
+    static TestSuiteLogTest = TestCase('TestSuite.run()', { async test() {
         const testSuite: TestSuite = new TestSuite1();
         await testSuite.run();
         const logForTest = (testSuite as TestSuite1).logForTest;
         assertEqual<string>(logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');
-    });
+    }});
 
-    static TestSuiteStateTest = TestCase('TestSuite.state', async () => {
-        const successfulTest = TestCase('', async () => {});
+    static TestSuiteStateTest = TestCase('TestSuite.state', { async test() {
+        const successfulTest = TestCase('', { async test() {} });
         assertEqual<TestState>(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
         await successfulTest.run();
         assertEqual<TestState>(TestState.Succeeded, successfulTest.state, 'state should be Succeeded');
 
-        const unsuccessfulTest = TestCase('', async () => {
+        const unsuccessfulTest = TestCase('', { async test() {
             fail('');
-        });
+        }});
         assertEqual<TestState>(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
         await unsuccessfulTest.run();
         assertEqual<TestState>(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
-    });
+    }});
 
     constructor() {
         super([

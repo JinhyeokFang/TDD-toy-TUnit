@@ -26,7 +26,7 @@ class TestCaseForFail extends BaseTestCase {
 }
 
 export class TestCaseTest extends TestSuite {
-    static TestCaseLogTest = TestCase('TestCase.run()', async () => {
+    static TestCaseLogTest = TestCase('TestCase.run()', { async test() {
         const testCase = new TestCaseForTest();
         await testCase.run();
         assertEqual<string>(
@@ -34,9 +34,9 @@ export class TestCaseTest extends TestSuite {
             'setUp-test-tearDown', 
             'Wrong Log'
         );
-    });
+    }});
 
-    static TestCaseResultTest = TestCase('TestCase.getResult()', async () => {
+    static TestCaseResultTest = TestCase('TestCase.getResult()', { async test() {
         const tc2 = new TestCaseForFail('TestCase');
         try {
             await tc2.run();
@@ -47,9 +47,9 @@ export class TestCaseTest extends TestSuite {
             isSuccess: false,
             cause: 'ERROR'
         });
-    })
+    }})
 
-    static TestcaseStateTest = TestCase('Testcase.state', async () => {
+    static TestcaseStateTest = TestCase('Testcase.state', { async test() {
         const successfulTest = new TestCaseForTest();
         assertEqual<TestState>(TestState.NotBeTested, successfulTest.state, 'state should be NotBeTested');
         await successfulTest.run();
@@ -59,7 +59,7 @@ export class TestCaseTest extends TestSuite {
         assertEqual<TestState>(TestState.NotBeTested, unsuccessfulTest.state, 'state should be NotBeTested');
         await unsuccessfulTest.run();
         assertEqual<TestState>(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
-    });
+    }});
 
     constructor() {
         super([

@@ -22,7 +22,7 @@ class UnsuccessfulTest extends Testable {
     }
 }
 
-export const TestableTest = TestCase('Testable', async () => {
+export const TestableTest = TestCase('Testable', { async test() {
     const test = new Testable();
     assertEqual<TestState>(TestState.NotBeTested, test.state, 'state should be NotBeTested');
 
@@ -33,4 +33,4 @@ export const TestableTest = TestCase('Testable', async () => {
     const unsuccessfulTest = new UnsuccessfulTest();
     unsuccessfulTest.run();
     assertEqual<TestState>(TestState.Failed, unsuccessfulTest.state, 'state should be Failed');
-});
+}});

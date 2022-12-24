@@ -2,7 +2,7 @@ import { assertEqual } from "../lib/assert";
 import { ReportGenerator } from "../lib/report-generator";
 import { TestCase } from "../lib/testcase";
 
-export const ReportGeneratorTest = TestCase('ReportGenerator', async () => {
+export const ReportGeneratorTest = TestCase('ReportGenerator', { async test() {
     const reportGenerator = new ReportGenerator();
     reportGenerator.addResult({
         testName: 'TC1',
@@ -48,4 +48,4 @@ TS:
         Result: Success
     `
     );
-});
+}});
