@@ -3,7 +3,7 @@ import { fail } from "../lib/fail";
 import { TestResult } from "../lib/test-result";
 import { BaseTestCase } from "../lib/base-testcase";
 import { TestState } from "../lib/teststate";
-import { TestSuite } from "../lib/testsuite";
+import { BaseTestSuite } from "../lib/testsuite";
 import { TestCase } from "../lib/testcase";
 
 const TestCase1 = TestCase('TestCase1', { async test() {} });
@@ -11,7 +11,7 @@ const TestCase2 = TestCase('TestCase2', { async test() {
     fail('IT MUST BE FAILED');
 }});
 class TestCase3 extends BaseTestCase { async test() {} }
-class TestSuite1 extends TestSuite {
+class TestSuite1 extends BaseTestSuite {
     logForTest: string[] = [];
 
     async setUp() {
@@ -27,10 +27,10 @@ class TestSuite1 extends TestSuite {
     }
 }
 
-export class TestSuiteTest extends TestSuite {
+export class TestSuiteTest extends BaseTestSuite {
     static TestSuiteTestMethodTest = TestCase('testSuite.getResult()', { async test() {
         const tests = [TestCase1, TestCase2, TestSuite1];
-        const testSuite = new TestSuite(tests);
+        const testSuite = new BaseTestSuite(tests);
         await testSuite.run();
         const result = testSuite.getResult()[0].children;
         const testSuiteChildren = result.find(test => test.testName === 'TestSuite1').children;
@@ -59,7 +59,7 @@ export class TestSuiteTest extends TestSuite {
     }});
 
     static TestSuiteLogTest = TestCase('TestSuite.run()', { async test() {
-        const testSuite: TestSuite = new TestSuite1();
+        const testSuite: BaseTestSuite = new TestSuite1();
         await testSuite.run();
         const logForTest = (testSuite as TestSuite1).logForTest;
         assertEqual<string>(logForTest.join('-'), 'setUp-test-tearDown', 'Wrong Log');

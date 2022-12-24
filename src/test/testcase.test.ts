@@ -3,7 +3,7 @@ import { fail } from "../lib/fail";
 import { TestResult } from "../lib/test-result";
 import { BaseTestCase } from "../lib/base-testcase";
 import { TestState } from "../lib/teststate";
-import { TestSuite } from "../lib/testsuite";
+import { BaseTestSuite } from "../lib/testsuite";
 import { TestCase } from "../lib/testcase";
 
 class TestCaseForTest extends BaseTestCase {
@@ -25,7 +25,7 @@ class TestCaseForFail extends BaseTestCase {
     }
 }
 
-export class TestCaseTest extends TestSuite {
+export class TestCaseTest extends BaseTestSuite {
     static TestCaseLogTest = TestCase('TestCase.run()', { async test() {
         const testCase = new TestCaseForTest();
         await testCase.run();

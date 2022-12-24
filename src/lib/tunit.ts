@@ -1,10 +1,9 @@
 import { ReportGenerator } from "./report-generator";
-import { Testable } from "./testable";
 import { TestState } from "./teststate";
-import { TestSuite } from "./testsuite";
+import { Test, BaseTestSuite } from "./testsuite";
 
-export class TUnit extends TestSuite {
-    constructor(tests: (typeof Testable | Testable)[]) {
+export class TUnit extends BaseTestSuite {
+    constructor(tests: Test[]) {
         super(tests);
     }
 
@@ -15,7 +14,7 @@ export class TUnit extends TestSuite {
     }
 
     static async test(
-        tests: (typeof Testable | Testable)[], 
+        tests: Test[], 
         logger: (string) => void = console.log
     ) {
         const tunitInstance = new TUnit(tests);

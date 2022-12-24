@@ -1,8 +1,8 @@
 import { assertEqual, assertThrowError } from "../lib/assert";
 import { TestCase } from "../lib/testcase";
-import { TestSuite } from "../lib/testsuite";
+import { BaseTestSuite } from "../lib/testsuite";
 
-export class AssertTest extends TestSuite {
+export class AssertTest extends BaseTestSuite {
     static assertEqualTest = TestCase('assertEqual()', { async test() {
         assertEqual<string>('hi', 'hi');
         assertEqual<{hi: string}>({

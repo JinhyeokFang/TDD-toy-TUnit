@@ -20,7 +20,8 @@
 - *TestCase -> BaseTestCase*
 - *AnonymousTestCase.create() -> TestCase()*
 - *테스트 케이스 재작성*
-- **TestCase() support setUp, tearDown**
+- *TestCase() support setUp, tearDown*
+- **TestSuite -> BaseTestSuite**
 - index.ts
 
 <br>

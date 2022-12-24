@@ -1,8 +1,9 @@
 import { TestResult } from './test-result';
 import { Testable } from "./testable";
 
-type Test = ((typeof Testable) | Testable);
-export class TestSuite extends Testable {
+export type Test = ((typeof Testable) | Testable);
+
+export class BaseTestSuite extends Testable {
     private tests: Test[] = [];
     private result: TestResult[] = []; 
 
