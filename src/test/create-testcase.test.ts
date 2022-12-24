@@ -1,10 +1,9 @@
-import { AnonymousTestCase } from "../lib/anonymous-testcase";
 import { assertEqual } from "../lib/assert";
 import { BaseTestCase } from "../lib/base-testcase";
+import { TestCase } from "../lib/testcase";
 
-export const CreateTestCaseTest = AnonymousTestCase
-    .create('CreateTestCaseTest', async () => {
-    const testCase: BaseTestCase = AnonymousTestCase.create('Test', async () => {
+export const CreateTestCaseTest = TestCase('CreateTestCaseTest', async () => {
+    const testCase: BaseTestCase = TestCase('Test', async () => {
         assertEqual(1, 1);
         assertEqual(1, 2, 'WRONG');
     });

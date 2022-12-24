@@ -17,7 +17,8 @@
 - *async test(), run()*
 - *testSuite setUp(), tearDown()*
 - *CreateTestCase*
-- **TestCase -> BaseTestCase**
+- *TestCase -> BaseTestCase*
+- **AnonymousTestCase.create() -> TestCase()**
 - index.ts
 
 <br>
