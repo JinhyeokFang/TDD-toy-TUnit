@@ -14,10 +14,13 @@ export class TUnit extends TestSuite {
         return reportGenerator.report;
     }
 
-    static async test(tests: (typeof Testable)[]) {
+    static async test(
+        tests: (typeof Testable)[], 
+        logger: (string) => void = console.log
+    ) {
         const tunitInstance = new TUnit(tests);
         await tunitInstance.run();
-        console.log(tunitInstance.report);
+        logger(tunitInstance.report);
         if (tunitInstance.state === TestState.Failed)
             process.exit(1);
     }
