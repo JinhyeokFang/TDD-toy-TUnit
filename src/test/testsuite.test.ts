@@ -44,11 +44,11 @@ export class TestSuiteTest extends TestSuite {
 
 class TestSuiteTestMethodTest extends TestCase {
     async test() {
-        const tests = [TC1, TC2, TS1];
+        const tests = [TC1, TC2, new TC3(), TS1];
         const testSuite = new TestSuite(tests);
         await testSuite.run();
         const result = testSuite.getResult()[0].children;
-        const testSuiteChildren = result[2].children;
+        const testSuiteChildren = result[3].children;
         assertEqual<TestResult>(
             result[0],
             {
@@ -62,6 +62,13 @@ class TestSuiteTestMethodTest extends TestCase {
                 testName: 'TC2',
                 isSuccess: false,
                 cause: 'IT MUST BE FAILED'
+            }
+        );
+        assertEqual<TestResult>(
+            result[2],
+            {
+                testName: 'TC3',
+                isSuccess: true,
             }
         );
         assertEqual<TestResult>(

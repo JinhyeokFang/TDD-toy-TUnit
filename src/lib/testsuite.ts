@@ -1,11 +1,12 @@
 import { TestResult } from './test-result';
 import { Testable } from "./testable";
 
+type Test = ((typeof Testable) | Testable);
 export class TestSuite extends Testable {
-    private tests: (typeof Testable)[] = [];
+    private tests: Test[] = [];
     private result: TestResult[] = []; 
 
-    constructor(tests: (typeof Testable)[]) {
+    constructor(tests: Test[]) {
         super();
         this.tests = tests;
     }
@@ -23,15 +24,13 @@ export class TestSuite extends Testable {
         await Promise.all(
             this.tests.map(test => this.runTest(test))
         );
-        for (const test of this.tests) {
-            await this.runTest(test);
-        }
         await this.tearDown();
         this.setIsSuccess();
     }
 
-    private async runTest(test: (typeof Testable)) {
-        const testInstance = new test();
+    private async runTest(test: Test) {
+        const isInstance = typeof test === 'object';
+        const testInstance = isInstance ? test : new test();
         await testInstance.run();
         const result = testInstance.getResult();
         this.addTestCaseResult(result);

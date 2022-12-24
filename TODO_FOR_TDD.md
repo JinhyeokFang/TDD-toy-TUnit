@@ -8,13 +8,12 @@
 - *Child Test Result in Report*
 - *테스트 슈트 안 모든 테스트 TestResult.children으로 넣기*
 - *testcaseName 리팩토링*
-- **Logger customize**
+- *Logger customize*
 - *AssertEqual Generic*
 - *TestError*
 - *export default 제거*
-- testcaseName 부분 설명 보충
-- isEqual without lodash
-- assert(boolean)
+- testName 커스텀 가능하게
+- **TestSuite 리펙토링**
 - *async test(), run()*
 - *testSuite setUp(), tearDown()*
 - index.ts
