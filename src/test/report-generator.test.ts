@@ -3,7 +3,7 @@ import { ReportGenerator } from "../lib/report-generator";
 import { TestCase } from "../lib/testcase";
 
 export class ReportGeneratorTest extends TestCase {
-    test() {
+    async test() {
         const reportGenerator = new ReportGenerator();
         reportGenerator.addResult({
             testName: 'TC1',

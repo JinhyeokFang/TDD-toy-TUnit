@@ -23,7 +23,7 @@ class UnsuccessfulTest extends Testable {
 }
 
 export class TestableTest extends TestCase {
-    test() {
+    async test() {
         const test = new Testable();
         assertEqual<TestState>(TestState.NotBeTested, test.state, 'state should be NotBeTested');
 

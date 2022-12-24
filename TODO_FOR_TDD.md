@@ -10,12 +10,12 @@
 - *testcaseName 리팩토링*
 - Logger customize
 - *AssertEqual Generic*
-- **TestError**
+- *TestError*
 - *export default 제거*
 - testcaseName 부분 설명 보충
 - isEqual without lodash
 - assert(boolean)
-- async test(), run()
+- **async test(), run()**
 - *testSuite setUp(), tearDown()*
 - index.ts
 

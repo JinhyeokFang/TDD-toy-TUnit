@@ -14,9 +14,9 @@ export class TUnit extends TestSuite {
         return reportGenerator.report;
     }
 
-    static test(tests: (typeof Testable)[]) {
+    static async test(tests: (typeof Testable)[]) {
         const tunitInstance = new TUnit(tests);
-        tunitInstance.run();
+        await tunitInstance.run();
         console.log(tunitInstance.report);
         if (tunitInstance.state === TestState.Failed)
             process.exit(1);

@@ -8,17 +8,17 @@ export class TestCase extends Testable {
         super();
     }
     
-    protected setUp() {};
-    protected test() {
+    protected async setUp() {};
+    protected async test() {
         throw new Error('testcase must define test()')
     };
-    protected tearDown() {};
+    protected async tearDown() {};
 
-    run() {
-        this.setUp();
+    async run() {
+        await this.setUp();
         this.result = [];
         try {
-            this.test();
+            await this.test();
             this.result.push({
                 isSuccess: true,
                 testName: Testable.getTestName(this),
@@ -30,7 +30,7 @@ export class TestCase extends Testable {
                 cause: error.message,
             });
         }
-        this.tearDown();
+        await this.tearDown();
     }
 
     getResult() {

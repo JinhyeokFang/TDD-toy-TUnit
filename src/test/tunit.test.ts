@@ -5,14 +5,14 @@ import { TestCase } from '../lib/testcase';
 import { TestSuite } from '../lib/testsuite';
 import { TUnit } from '../lib/tunit';
 
-class TestCase1ForTUnitTest extends TestCase { test() {} }
-class TestCase2ForTUnitTest extends TestCase { test() {} }
+class TestCase1ForTUnitTest extends TestCase { async test() {} }
+class TestCase2ForTUnitTest extends TestCase { async test() {} }
 class TestSuiteForTUnitTest extends TestSuite {
     constructor() { super([ TestCase2ForTUnitTest ]); }
 }
 
 export class TUnitTest extends TestCase {
-    test() {
+    async test() {
         const tunit = new TUnit([
             TestCase1ForTUnitTest, 
             TestSuiteForTUnitTest,
@@ -21,8 +21,8 @@ export class TUnitTest extends TestCase {
             TestCase1ForTUnitTest,
             TestSuiteForTUnitTest,
         ]);
-        tunit.run();
-        testSuite.run();
+        await tunit.run();
+        await testSuite.run();
         const tunitResult = tunit.getResult();
         const testSuiteResult = testSuite.getResult();
 

@@ -10,26 +10,29 @@ export class TestSuite extends Testable {
         this.tests = tests;
     }
     
-    protected setUp() {};
-    protected tearDown() {};
+    protected async setUp() {};
+    protected async tearDown() {};
 
-    run() {
+    async run() {
         this.result = [{
             testName: Testable.getTestName(this),
             isSuccess: true,
             children: []
         }];
-        this.setUp();
+        await this.setUp();
+        await Promise.all(
+            this.tests.map(test => this.runTest(test))
+        );
         for (const test of this.tests) {
-            this.runTest(test);
+            await this.runTest(test);
         }
-        this.tearDown();
+        await this.tearDown();
         this.setIsSuccess();
     }
 
-    private runTest(test: (typeof Testable)) {
+    private async runTest(test: (typeof Testable)) {
         const testInstance = new test();
-        testInstance.run();
+        await testInstance.run();
         const result = testInstance.getResult();
         this.addTestCaseResult(result);
     }

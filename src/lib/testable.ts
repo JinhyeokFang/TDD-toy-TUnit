@@ -2,7 +2,7 @@ import { TestResult } from "./test-result";
 import { TestState } from "./teststate";
 
 export class Testable {
-    run(): void {};
+    run(): void | Promise<void> {};
     getResult(): TestResult[] { return [] };
 
     get state(): TestState {
