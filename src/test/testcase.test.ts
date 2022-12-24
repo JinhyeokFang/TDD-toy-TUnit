@@ -43,13 +43,13 @@ class TestCaseLogTest extends TestCase {
 
 class TestCaseResultTest extends TestCase {
     async test() {
-        const tc2 = new TestCaseForFail();
+        const tc2 = new TestCaseForFail('TestCase');
         try {
             await tc2.run();
         } catch {}
         const result = tc2.getResult();
         assertEqual<TestResult>(result[0], {
-            testName: 'TestCaseForFail',
+            testName: 'TestCase',
             isSuccess: false,
             cause: 'ERROR'
         });

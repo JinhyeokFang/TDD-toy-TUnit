@@ -3,9 +3,11 @@ import { Testable } from './testable';
 
 export class TestCase extends Testable {
     private result: TestResult[] = [];
+    private testName: string;
 
-    constructor() {
+    constructor(testName?: string) {
         super();
+        this.testName = testName || TestCase.getTestName(this);
     }
     
     protected async setUp() {};
@@ -21,12 +23,12 @@ export class TestCase extends Testable {
             await this.test();
             this.result.push({
                 isSuccess: true,
-                testName: Testable.getTestName(this),
+                testName: this.testName,
             });
         } catch (error) {
             this.result.push({
                 isSuccess: false,
-                testName: Testable.getTestName(this),
+                testName: this.testName,
                 cause: error.message,
             });
         }

@@ -1,5 +1,6 @@
 import { TUnit } from "../lib/tunit";
 import { AssertTest } from './assert.test';
+import { CreateTestCaseTest } from "./create-testcase.test";
 import { ReportGeneratorTest } from './report-generator.test';
 import { TestableTest } from "./testable.test";
 import { TestCaseTest } from './testcase.test';
@@ -13,4 +14,5 @@ TUnit.test([
     TestSuiteTest,
     ReportGeneratorTest,
     TUnitTest,
+    CreateTestCaseTest,
 ]);
