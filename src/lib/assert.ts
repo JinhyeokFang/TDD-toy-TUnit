@@ -27,7 +27,7 @@ export function assertThrowError(
 }
 
 function assertEqualDefaultErrorMessage(expected: any, received: any) {
-    return `Expected [${expected}] but Received [${received}]`;
+    return `Expected [${JSON.stringify(expected)}] but Received [${JSON.stringify(received)}]`;
 }
 
 function assertThrowErrorDefaultErrorMessage() {

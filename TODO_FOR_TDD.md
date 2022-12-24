@@ -18,7 +18,8 @@
 - *testSuite setUp(), tearDown()*
 - *CreateTestCase*
 - *TestCase -> BaseTestCase*
-- **AnonymousTestCase.create() -> TestCase()**
+- *AnonymousTestCase.create() -> TestCase()*
+- **테스트 케이스 재작성**
 - index.ts
 
 <br>

@@ -1,32 +1,31 @@
 import { assertEqual } from "../lib/assert";
 import { ReportGenerator } from "../lib/report-generator";
-import { BaseTestCase } from "../lib/base-testcase";
+import { TestCase } from "../lib/testcase";
 
-export class ReportGeneratorTest extends BaseTestCase {
-    async test() {
-        const reportGenerator = new ReportGenerator();
-        reportGenerator.addResult({
-            testName: 'TC1',
+export const ReportGeneratorTest = TestCase('ReportGenerator', async () => {
+    const reportGenerator = new ReportGenerator();
+    reportGenerator.addResult({
+        testName: 'TC1',
+        isSuccess: true,
+    });
+    reportGenerator.addResult({
+        testName: 'TC2',
+        isSuccess: false,
+        cause: 'IT MUST BE FAILED',
+    });
+    reportGenerator.addResult({
+        testName: 'TS',
+        isSuccess: true,
+        children: [{
+            testName: 'TC3',
             isSuccess: true,
-        });
-        reportGenerator.addResult({
-            testName: 'TC2',
-            isSuccess: false,
-            cause: 'IT MUST BE FAILED',
-        });
-        reportGenerator.addResult({
-            testName: 'TS',
+        },
+        {
+            testName: 'TC4',
             isSuccess: true,
-            children: [{
-                testName: 'TC3',
-                isSuccess: true,
-            },
-            {
-                testName: 'TC4',
-                isSuccess: true,
-            }],
-        });
-        assertEqual<string>(reportGenerator.report, `
+        }],
+    });
+    assertEqual<string>(reportGenerator.report, `
 ===============Test_Result===============
 Summary:
     Total: 4
@@ -48,6 +47,5 @@ TS:
     TC4:
         Result: Success
     `
-        );
-    }
-}
+    );
+});
