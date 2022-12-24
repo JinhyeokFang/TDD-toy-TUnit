@@ -19,7 +19,7 @@ export class ReportGenerator {
         resultSummarizer.addResult(...this.result);
         const resultSummary = resultSummarizer.summary;
         const reportSummary = `
-===============Test_Result===============
+TUnit Test Result
 Summary:
     Total: ${resultSummary.total}
     Success: ${resultSummary.success}
@@ -46,8 +46,7 @@ Summary:
 
     private getReportsFromChildren(testcaseResult: TestResult) {
         let report = `
-${testcaseResult.testName}:
-    Result: ${testcaseResult.isSuccess ? 'Success' : 'Fail'}`;
+${testcaseResult.testName}: ${testcaseResult.isSuccess ? 'Success' : 'Fail'}`;
         for (const test of testcaseResult.children) {
             report += this.getChildReport(test);
         }
@@ -64,15 +63,13 @@ ${testcaseResult.testName}:
 
     private getSuccessReport(testcaseResult: TestResult) {
         return `
-${testcaseResult.testName}:
-    Result: Success
+${testcaseResult.testName}: Success
 `;
     }
 
     private getFailReport(testcaseResult: TestResult) {
         return `
-${testcaseResult.testName}:
-    Result: Fail
+${testcaseResult.testName}: Fail
     Cause: ${testcaseResult.cause}
 `;
     }

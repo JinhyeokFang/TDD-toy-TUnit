@@ -26,26 +26,21 @@ export const ReportGeneratorTest = TestCase('ReportGenerator', { async test() {
         }],
     });
     assertEqual<string>(reportGenerator.report, `
-===============Test_Result===============
+TUnit Test Result
 Summary:
     Total: 4
     Success: 3
     Fail: 1
 
-TC1:
-    Result: Success
+TC1: Success
 
-TC2:
-    Result: Fail
+TC2: Fail
     Cause: IT MUST BE FAILED
 
-TS:
-    Result: Success
-    TC3:
-        Result: Success
+TS: Success
+    TC3: Success
     
-    TC4:
-        Result: Success
+    TC4: Success
     `
     );
 }});
